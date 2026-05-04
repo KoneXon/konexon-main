@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KoneXon — O Ecossistema de Conexões</title>
+  <meta name="description" content="KoneXon é um ecossistema de tecnologia construído para conectar os Guineenses ao mundo — websites, IT, fintech e muito mais." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --bg:#05050a;--bg2:#0a0a12;
+      --green:#00e87a;--green2:#00b85e;
+      --gd:rgba(0,232,122,0.08);--gb:rgba(0,232,122,0.2);
+      --text:#f5f5f0;--muted:rgba(245,245,240,0.42);--muted2:rgba(245,245,240,0.18);
+      --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);
+    }
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;background:rgba(5,5,10,.97);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:99;}
+    .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;color:var(--text);letter-spacing:-.02em;text-decoration:none;}
+    .logo em{font-style:normal;color:var(--green);}
+    .navl{display:flex;gap:2rem;list-style:none;}
+    .navl a{font-size:.73rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+    .navl a:hover{color:var(--text);}
+    .nav-cta{background:var(--green);color:#05050a!important;padding:.38rem 1.1rem;border-radius:100px;font-size:.72rem;font-weight:700;text-decoration:none;}
+    .lang-btn{font-size:.62rem;color:var(--muted2);border:1px solid var(--border);padding:.22rem .65rem;border-radius:100px;cursor:pointer;background:none;}
+    /* HERO */
+    .hero{display:flex;align-items:center;justify-content:center;gap:3rem;position:relative;overflow:hidden;padding:5rem 3rem;min-height:520px;}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,232,122,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,232,122,.025) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);}
+    .hero-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,232,122,.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);}
+    .eco{position:relative;width:360px;height:360px;flex-shrink:0;z-index:2;}
+    .eco-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid;}
+    .er1{width:130px;height:130px;border-color:rgba(0,232,122,.2);transform:translate(-50%,-50%);animation:sp1 18s linear infinite;}
+    .er2{width:220px;height:220px;border-color:rgba(0,184,94,.12);transform:translate(-50%,-50%);animation:sp2 28s linear infinite reverse;}
+    .er3{width:330px;height:330px;border-color:rgba(0,232,122,.07);transform:translate(-50%,-50%);animation:sp1 42s linear infinite;}
+    @keyframes sp1{to{transform:translate(-50%,-50%) rotate(360deg)}}
+    @keyframes sp2{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+    .eco-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 0 8px rgba(0,232,122,.12),0 0 40px rgba(0,232,122,.2);}
+    .eco-k{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#05050a;letter-spacing:-.03em;}
+    .snode{position:absolute;width:46px;height:46px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.4);transition:transform .35s cubic-bezier(.34,1.56,.64,1),border-color .25s,box-shadow .25s;z-index:5;}
+    .snode:hover{border-color:rgba(0,232,122,.5);box-shadow:0 0 20px rgba(0,232,122,.25);z-index:20;}
+    .snode-icon{font-size:18px;line-height:1;}
+    .snode-lbl{font-size:7px;color:rgba(255,255,255,.4);margin-top:2px;white-space:nowrap;font-family:'DM Sans',sans-serif;}
+    .tt{position:absolute;background:rgba(8,8,18,.98);border:1px solid rgba(0,232,122,.25);border-radius:14px;padding:.8rem 1rem;z-index:100;pointer-events:none;opacity:0;transition:opacity .18s;min-width:160px;max-width:200px;}
+    .tt.on{opacity:1;}
+    .tt-n{font-family:'Syne',sans-serif;font-size:.76rem;font-weight:700;color:var(--text);margin-bottom:.2rem;}
+    .tt-d{font-size:.62rem;color:var(--muted);line-height:1.5;}
+    .tt-t{display:inline-block;font-size:.54rem;background:rgba(0,232,122,.1);border:1px solid rgba(0,232,122,.22);color:var(--green);padding:.1rem .4rem;border-radius:100px;margin-top:.35rem;}
+    .hero-text{flex:1;max-width:380px;z-index:2;}
+    .htag{display:inline-flex;align-items:center;gap:.4rem;font-size:.6rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:1.4rem;padding:.32rem .9rem;border:1px solid var(--gb);border-radius:100px;background:var(--gd);}
+    .hdot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 2s infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+    .hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;line-height:1.04;letter-spacing:-.04em;margin-bottom:1rem;}
+    .hero h1 em{font-style:normal;color:var(--green);}
+    .hero p{font-size:.82rem;color:var(--muted);line-height:1.85;margin-bottom:1.6rem;}
+    .hbtns{display:flex;gap:.7rem;flex-wrap:wrap;}
+    .btn-p{background:var(--green);color:#05050a;padding:.75rem 1.8rem;border-radius:100px;font-size:.82rem;font-weight:700;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;}
+    .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,232,122,.3);}
+    .btn-s{border:1px solid var(--border2);color:var(--text);padding:.75rem 1.8rem;border-radius:100px;font-size:.82rem;background:rgba(255,255,255,.03);cursor:pointer;transition:border-color .2s;}
+    .btn-s:hover{border-color:var(--gb);}
+    /* TICKER */
+    .ticker-sec{padding:3rem 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;}
+    .ticker-hdr{text-align:center;padding:0 2rem 2rem;}
+    .slabel{font-size:.58rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.5rem;}
+    .stitle{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:-.03em;}
+    .ssub{color:var(--muted);font-size:.78rem;margin-top:.5rem;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7;}
+    .tw{position:relative;overflow:hidden;margin-bottom:.8rem;}
+    .tw::before,.tw::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+    .tw::before{left:0;background:linear-gradient(to right,var(--bg2),transparent);}
+    .tw::after{right:0;background:linear-gradient(to left,var(--bg2),transparent);}
+    .tr{display:flex;gap:.8rem;width:max-content;}
+    .ta{animation:tl 28s linear infinite;}
+    .tb{animation:tr2 22s linear infinite;}
+    .tc{animation:tl 36s linear infinite;}
+    @keyframes tl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @keyframes tr2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+    .sc{display:flex;align-items:center;gap:.65rem;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:12px;padding:.65rem 1rem;white-space:nowrap;flex-shrink:0;transition:border-color .25s,background .25s;cursor:default;}
+    .sc:hover{border-color:var(--gb);background:var(--gd);}
+    .si{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+    .sig{background:rgba(0,232,122,.12);}
+    .sim{background:rgba(255,255,255,.06);}
+    .sib{background:rgba(0,184,94,.1);}
+    .sn{font-family:'Syne',sans-serif;font-size:.74rem;font-weight:700;color:var(--text);}
+    .sd{font-size:.6rem;color:var(--muted);margin-top:1px;}
+    /* VIDEO */
+    .video-section{padding:4rem 3rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .video-wrap{position:relative;width:100%;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:#000;aspect-ratio:16/9;}
+    .video-bg{position:absolute;inset:0;background:linear-gradient(135deg,#05050a 0%,#0a1a0a 40%,#05050a 100%);}
+    .tech-grid-v{position:absolute;inset:0;background-image:linear-gradient(rgba(0,232,122,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,232,122,.03) 1px,transparent 1px);background-size:40px 40px;}
+    .tline{position:absolute;background:linear-gradient(to right,transparent,rgba(0,232,122,.35),transparent);height:1px;left:0;right:0;animation:scanH 5s ease-in-out infinite;}
+    .tline2{animation-delay:2.5s;}
+    .tlinev{position:absolute;background:linear-gradient(to bottom,transparent,rgba(0,232,122,.25),transparent);width:1px;top:0;bottom:0;animation:scanV 6s ease-in-out infinite;}
+    .tlinev2{animation-delay:3s;}
+    @keyframes scanH{0%{top:-1px;opacity:0}5%{opacity:1}95%{opacity:1}100%{top:100%;opacity:0}}
+    @keyframes scanV{0%{left:-1px;opacity:0}5%{opacity:1}95%{opacity:1}100%{left:100%;opacity:0}}
+    .tech-node-v{position:absolute;background:rgba(0,232,122,.08);border:1px solid rgba(0,232,122,.25);border-radius:10px;padding:.35rem .75rem;font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;color:var(--green);white-space:nowrap;}
+    .tn1{top:10%;left:5%;animation:fa 6s ease-in-out infinite;}
+    .tn2{top:15%;right:8%;animation:fb 7s ease-in-out infinite 1s;}
+    .tn3{top:40%;left:4%;animation:fa 8s ease-in-out infinite 2s;}
+    .tn4{top:68%;left:10%;animation:fb 6s ease-in-out infinite .5s;}
+    .tn5{top:75%;right:6%;animation:fa 7s ease-in-out infinite 1.5s;}
+    .tn6{top:42%;right:5%;animation:fb 9s ease-in-out infinite 3s;}
+    .tn7{top:28%;left:35%;animation:fa 5s ease-in-out infinite .8s;}
+    .tn8{top:62%;left:40%;animation:fb 6.5s ease-in-out infinite 2.5s;}
+    @keyframes fa{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes fb{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+    .pdot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--green);z-index:4;}
+    .pdot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--green);animation:ripple 2.5s ease-out infinite;}
+    @keyframes ripple{0%{transform:scale(1);opacity:.5}100%{transform:scale(3.5);opacity:0}}
+    .pd1{top:30%;left:52%;}
+    .pd2{top:58%;left:28%;}
+    .pd3{top:38%;left:72%;}
+    .video-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:5;}
+    .vc-label{font-size:.58rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.7rem;display:block;}
+    .vc-title{font-family:'Syne',sans-serif;font-size:clamp(1.2rem,3vw,2rem);font-weight:800;color:#fff;line-height:1.1;white-space:nowrap;}
+    .vc-sub{font-size:.68rem;color:rgba(255,255,255,.35);margin-top:.5rem;}
+    .video-note{text-align:center;margin-top:1rem;font-size:.7rem;color:var(--muted2);}
+    /* ABOUT */
+    .about{padding:5rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;border-top:1px solid var(--border);}
+    .about-left .slabel{margin-bottom:.5rem;}
+    .about-left h2{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:.9rem;}
+    .about-left p{font-size:.82rem;color:var(--muted);line-height:1.85;margin-bottom:.9rem;}
+    .pillars{display:flex;flex-direction:column;gap:.75rem;}
+    .pillar{display:flex;align-items:flex-start;gap:.85rem;padding:.9rem 1rem;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;transition:border-color .25s,background .25s;}
+    .pillar:hover{border-color:var(--gb);background:var(--gd);}
+    .pi{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:rgba(0,232,122,.08);border:1px solid rgba(0,232,122,.15);}
+    .pt{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;margin-bottom:2px;}
+    .pd{font-size:.68rem;color:var(--muted);line-height:1.6;}
+    /* PRODUCTS */
+    .products{padding:5rem 3rem;background:var(--bg2);border-top:1px solid var(--border);}
+    .sec-hdr{text-align:center;margin-bottom:2.5rem;}
+    .sec-hdr h2{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:700;letter-spacing:-.03em;margin:.5rem 0 .6rem;}
+    .sec-hdr p{font-size:.8rem;color:var(--muted);max-width:440px;margin:0 auto;line-height:1.7;}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+    .pcard{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;gap:.9rem;position:relative;overflow:hidden;transition:border-color .3s,transform .25s;}
+    .pcard:hover{transform:translateY(-5px);}
+    .pcard-pay{border-color:rgba(0,232,122,.18);}
+    .pcard-pay:hover{border-color:rgba(0,232,122,.4);}
+    .pcard-web:hover{border-color:rgba(0,184,94,.35);}
+    .pcard-mind:hover{border-color:rgba(0,232,122,.2);}
+    .pglow{position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none;}
+    .pcard-pay .pglow{background:radial-gradient(ellipse at top left,rgba(0,232,122,.08),transparent 60%);}
+    .pcard-web .pglow{background:radial-gradient(ellipse at top left,rgba(0,184,94,.07),transparent 60%);}
+    .pcard-mind .pglow{background:radial-gradient(ellipse at top left,rgba(0,232,122,.05),transparent 60%);}
+    .pcard:hover .pglow{opacity:1;}
+    .pstatus{align-self:flex-start;font-size:.56rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .65rem;border-radius:100px;}
+    .ps-act{background:rgba(0,232,122,.1);border:1px solid rgba(0,232,122,.22);color:var(--green);}
+    .ps-soon{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--muted);}
+    .ps-tba{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--muted2);}
+    .picon{font-size:24px;}
+    .pname{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--text);}
+    .pname em{font-style:normal;color:var(--green);}
+    .pdesc{font-size:.74rem;color:var(--muted);line-height:1.7;flex:1;}
+    .ptags{display:flex;flex-wrap:wrap;gap:.3rem;}
+    .ptag{font-size:.56rem;color:var(--muted2);background:rgba(255,255,255,.03);border:1px solid var(--border);padding:.13rem .5rem;border-radius:100px;}
+    .pcta{font-size:.74rem;color:var(--green);font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s;}
+    .pcta:hover{gap:.5rem;}
+    /* FOUNDERS */
+    .founders{padding:5rem 3rem;border-top:1px solid var(--border);}
+    .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;max-width:700px;margin:2rem auto 0;}
+    .fcard{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;transition:border-color .3s,transform .25s;}
+    .fcard:hover{border-color:var(--gb);transform:translateY(-3px);}
+    .favatar{width:64px;height:64px;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#05050a;border:2px solid rgba(0,232,122,.3);}
+    .amm{background:linear-gradient(135deg,var(--green),var(--green2));}
+    .aje{background:linear-gradient(135deg,#a3e635,#65a30d);}
+    .fname{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:.25rem;}
+    .frole{font-size:.6rem;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.8rem;}
+    .fbio{font-size:.72rem;color:var(--muted);line-height:1.72;margin-bottom:.9rem;text-align:left;}
+    .ftags{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;}
+    .ftag{font-size:.56rem;color:var(--green);background:var(--gd);border:1px solid var(--gb);padding:.13rem .55rem;border-radius:100px;}
+    .founder-label{display:inline-flex;align-items:center;font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--green);background:var(--gd);border:1px solid var(--gb);padding:.2rem .65rem;border-radius:100px;margin-bottom:.6rem;}
+    .fskills-label{font-size:.6rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.1em;margin:.8rem 0 .4rem;text-align:left;}
+    /* CONTACT */
+    .contact{padding:5rem 3rem;background:var(--bg2);border-top:1px solid var(--border);}
+    .contact-inner{max-width:620px;margin:0 auto;}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
+    .contact-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:16px;padding:1.5rem;display:flex;align-items:center;gap:1rem;transition:border-color .25s,background .25s;}
+    .contact-card:hover{border-color:var(--gb);background:var(--gd);}
+    .contact-icon{width:44px;height:44px;border-radius:12px;background:rgba(0,232,122,.08);border:1px solid rgba(0,232,122,.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .contact-type{font-size:.58rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.2rem;}
+    .contact-val{font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;color:var(--text);}
+    .contact-val a{color:var(--green);text-decoration:none;}
+    .contact-val a:hover{text-decoration:underline;}
+    .contact-note{font-size:.72rem;color:var(--muted);margin-top:1.5rem;line-height:1.7;text-align:center;}
+    /* FOOTER */
+    .footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);flex-wrap:wrap;gap:1rem;}
+    .fl{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;letter-spacing:-.01em;}
+    .fl em{font-style:normal;color:var(--green);}
+    .ft{font-size:.62rem;color:var(--muted2);}
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="logo">Kone<em>X</em>on</a>
+  <ul class="navl">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#fundadores">Fundadores</a></li>
+    <li><a href="#contact" class="nav-cta">Contacto</a></li>
+  </ul>
+  <button class="lang-btn">PT / EN</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="eco" id="eco">
+    <div class="eco-ring er1"></div>
+    <div class="eco-ring er2"></div>
+    <div class="eco-ring er3"></div>
+    <div class="eco-center"><div class="eco-k">KX</div></div>
+    <div class="tt" id="tt">
+      <div class="tt-n" id="tt-n"></div>
+      <div class="tt-d" id="tt-d"></div>
+      <div class="tt-t" id="tt-t"></div>
+    </div>
+  </div>
+  <div class="hero-text">
+    <div class="htag"><div class="hdot"></div>Ecossistema de Conexões</div>
+    <h1>Conectamos os Guineenses<br>ao mundo <em>digital.</em></h1>
+    <p>A KoneXon cria websites, plataformas e serviços digitais para empresas e pessoas — na Guiné-Bissau e na diáspora. Tudo o que envolve IT, nós construímos.</p>
+    <div class="hbtns">
+      <button class="btn-p" onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">Conhecer os produtos</button>
+      <button class="btn-s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Falar connosco →</button>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-sec">
+  <div class="ticker-hdr">
+    <p class="slabel">O que fazemos</p>
+    <h2 class="stitle">Serviços que movem o país.</h2>
+    <p class="ssub">Desenvolvimento web, IT, design, AI e inovação tecnológica — tudo construído para os Guineenses.</p>
+  </div>
+  <div class="tw"><div class="tr ta" id="r1"></div></div>
+  <div class="tw"><div class="tr tb" id="r2"></div></div>
+  <div class="tw"><div class="tr tc" id="r3"></div></div>
+</div>
+
+<section class="video-section">
+  <div class="video-wrap">
+    <div class="video-bg"></div>
+    <div class="tech-grid-v"></div>
+    <div class="tline"></div><div class="tline tline2"></div>
+    <div class="tlinev"></div><div class="tlinev tlinev2"></div>
+    <div class="tech-node-v tn1">💻 Web Dev</div>
+    <div class="tech-node-v tn2">🤖 AI & Machine Learning</div>
+    <div class="tech-node-v tn3">🔒 Cibersegurança</div>
+    <div class="tech-node-v tn4">📱 Apps Móveis</div>
+    <div class="tech-node-v tn5">☁️ Cloud Computing</div>
+    <div class="tech-node-v tn6">⚙️ Sistemas IT</div>
+    <div class="tech-node-v tn7">📊 Analytics</div>
+    <div class="tech-node-v tn8">🚀 Inovação</div>
+    <div class="pdot pd1"></div>
+    <div class="pdot pd2"></div>
+    <div class="pdot pd3"></div>
+    <div class="video-center">
+      <span class="vc-label">KoneXon · Tecnologia · Futuro</span>
+      <div class="vc-title">O futuro digital<br>começa aqui.</div>
+      <div class="vc-sub">Coloca o teu vídeo aqui</div>
+    </div>
+  </div>
+  <p class="video-note">→ Para adicionar vídeo: substitui o div.video-wrap pelo teu &lt;video&gt; tag</p>
+</section>
+
+<section class="about" id="sobre">
+  <div class="about-left">
+    <p class="slabel">Quem somos</p>
+    <h2>Não somos apenas<br>uma empresa.</h2>
+    <p>A KoneXon nasceu na Guiné-Bissau com uma missão clara — provar que o talento guineense não precisa de sair para criar produtos que competem globalmente.</p>
+    <p>Criamos websites para pequenas e grandes empresas, sistemas com inteligência artificial, consultoria IT e muito mais.</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><div class="pi">⚡</div><div><div class="pt">Tecnologia com propósito</div><div class="pd">Websites, sistemas e IT para qualquer empresa — simples ou complexo, construímos.</div></div></div>
+    <div class="pillar"><div class="pi">🌍</div><div><div class="pt">Guiné-Bissau para o mundo</div><div class="pd">Nascemos aqui, pensamos global. Cada produto eleva o nome do país no mapa digital africano.</div></div></div>
+    <div class="pillar"><div class="pi">🔗</div><div><div class="pt">Conexões que transformam</div><div class="pd">Conectamos pessoas, negócios e tecnologia — digital, rápido e sem fronteiras.</div></div></div>
+    <div class="pillar"><div class="pi">💻</div><div><div class="pt">IT para todas as empresas</div><div class="pd">Consultoria, desenvolvimento e suporte técnico — do projeto mais simples ao mais complexo.</div></div></div>
+  </div>
+</section>
+
+<section class="products" id="produtos">
+  <div class="sec-hdr">
+    <p class="slabel">Os nossos produtos</p>
+    <h2>Um ecossistema. Várias soluções.</h2>
+    <p>Cada produto é autónomo, focado e construído para dominar o seu espaço.</p>
+  </div>
+  <div class="pgrid">
+    <div class="pcard pcard-pay">
+      <div class="pglow"></div>
+      <span class="pstatus ps-soon">Em breve</span>
+      <div class="picon">💸</div>
+      <div class="pname">KoneXon <em>Pay</em></div>
+      <p class="pdesc">Serviços financeiros digitais para todos os Guineenses — conta digital, cartão virtual, pagamentos e muito mais.</p>
+      <div class="ptags"><span class="ptag">Fintech</span><span class="ptag">Apps Móveis</span><span class="ptag">Conta Digital</span></div>
+      <a href="https://konekta-pay2.vercel.app" class="pcta">Entrar na lista →</a>
+    </div>
+    <div class="pcard pcard-web">
+      <div class="pglow"></div>
+      <span class="pstatus ps-act">Activo</span>
+      <div class="picon">💻</div>
+      <div class="pname">KoneXon <em>Web</em></div>
+      <p class="pdesc">Criamos websites profissionais, e-commerce, sistemas de gestão e soluções IT para empresas pequenas, startups e organizações.</p>
+      <div class="ptags"><span class="ptag">Web Dev</span><span class="ptag">Design</span><span class="ptag">AI</span><span class="ptag">IT</span></div>
+      <a href="mailto:konexon.gw@gmail.com" class="pcta">Saber mais →</a>
+    </div>
+    <div class="pcard pcard-mind">
+      <div class="pglow"></div>
+      <span class="pstatus ps-tba">A anunciar</span>
+      <div class="picon">📡</div>
+      <div class="pname">KoneXon <em>Mind</em></div>
+      <p class="pdesc">Uma plataforma de informação tecnológica — notícias, análises e tendências sobre inovação digital na Guiné-Bissau e no mundo.</p>
+      <div class="ptags"><span class="ptag">Tecnologia</span><span class="ptag">África</span><span class="ptag">Inovação</span></div>
+      <a href="mailto:konexon.gw@gmail.com" class="pcta">Fica a saber →</a>
+    </div>
+  </div>
+</section>
+
+<section class="founders" id="fundadores">
+  <div class="sec-hdr">
+    <p class="slabel">Fundadores</p>
+    <h2>As pessoas por trás da KoneXon.</h2>
+    <p>Dois estudantes de engenharia guineenses que fundaram a KoneXon juntos — com a missão de construir o futuro tecnológico do país.</p>
+  </div>
+  <div class="fgrid">
+    <div class="fcard">
+      <div class="founder-label">Co-Fundador</div>
+      <div class="favatar amm">MN</div>
+      <div class="fname">Marcelino Nauagna Mendes</div>
+      <div class="frole">Tech & Vision</div>
+      <p class="fbio">Estudante de Engenharia Informática, natural da Guiné-Bissau. Co-fundou a KoneXon com a missão de provar que o talento guineense não precisa de sair para vencer.</p>
+      <div class="fskills-label">Áreas de interesse</div>
+      <div class="ftags">
+        <span class="ftag">Fintech</span>
+        <span class="ftag">AI</span>
+        <span class="ftag">Cybersecurity</span>
+        <span class="ftag">Engineering</span>
+        <span class="ftag">Web Dev</span>
+      </div>
+    </div>
+    <div class="fcard">
+      <div class="founder-label">Co-Fundadora</div>
+      <div class="favatar aje">JE</div>
+      <div class="fname">Josefina Elawar da Costa</div>
+      <div class="frole">Operations & Tech</div>
+      <p class="fbio">Estudante de Engenharia, natural da Guiné-Bissau. Co-fundou a KoneXon para conectar pessoas, negócios e tecnologia — dentro e fora do país.</p>
+      <div class="fskills-label">Áreas de interesse</div>
+      <div class="ftags">
+        <span class="ftag">Engineering</span>
+        <span class="ftag">Redes</span>
+        <span class="ftag">IT</span>
+        <span class="ftag">Operações</span>
+        <span class="ftag">Estratégia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="sec-hdr">
+      <p class="slabel">Contacto</p>
+      <h2>Fala com a KoneXon.</h2>
+      <p>Parcerias, projectos, imprensa ou simplesmente queres saber mais — estamos aqui.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-type">Email</div>
+          <div class="contact-val"><a href="mailto:konexon.gw@gmail.com">konexon.gw@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🌍</div>
+        <div>
+          <div class="contact-type">Localização</div>
+          <div class="contact-val">Bissau · Porto · Istambul</div>
+        </div>
+      </div>
+    </div>
+    <p class="contact-note">Respondemos em menos de 24 horas. Podes escrever em Português, Crioulo, Inglês ou Français.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>
+    <div class="fl">Kone<em>X</em>on</div>
+    <p class="ft">O Ecossistema de Conexões · Guiné-Bissau para o mundo.</p>
+  </div>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="#sobre" style="font-size:.62rem;color:var(--muted2);text-decoration:none;">Sobre</a>
+    <a href="#produtos" style="font-size:.62rem;color:var(--muted2);text-decoration:none;">Produtos</a>
+    <a href="#fundadores" style="font-size:.62rem;color:var(--muted2);text-decoration:none;">Fundadores</a>
+    <a href="#contact" style="font-size:.62rem;color:var(--green);text-decoration:none;">Contacto</a>
+  </div>
+  <p class="ft">© 2026 KoneXon · Todos os direitos reservados</p>
+</footer>
+
+<script>
+const nodes=[
+  {i:'⚙️',n:'Sistemas IT',d:'Infraestrutura e consultoria técnica para qualquer empresa.',t:'IT & Sistemas',r:65,a:0},
+  {i:'💻',n:'Websites',d:'Sites modernos para pequenas e grandes empresas.',t:'KoneXon Web',r:65,a:45},
+  {i:'🛒',n:'E-commerce',d:'Lojas online completas com pagamento integrado.',t:'Web & Pay',r:65,a:90},
+  {i:'🏦',n:'Conta Digital',d:'Abre uma conta sem precisar de ir a um banco físico.',t:'KoneXon Pay',r:65,a:135},
+  {i:'🤝',n:'Parcerias',d:'Conectamos empresas guineenses a parceiros internacionais.',t:'Ecossistema',r:65,a:180},
+  {i:'📦',n:'Logística',d:'Rastreio e gestão de encomendas integrado.',t:'IT',r:65,a:225},
+  {i:'📊',n:'Analytics',d:'Dashboards e relatórios para decisões baseadas em dados.',t:'IT & AI',r:65,a:270},
+  {i:'💡',n:'Inovação',d:'Sistemas inteligentes com IA para automatizar negócios.',t:'AI',r:65,a:315},
+  {i:'🖥️',n:'Hardware',d:'Infraestrutura tecnológica completa para empresas.',t:'IT',r:109,a:22},
+  {i:'📡',n:'KoneXon Mind',d:'Plataforma de informação e tendências tecnológicas.',t:'Em breve',r:109,a:82},
+  {i:'📈',n:'Crescimento',d:'Estratégias para escalar negócios guineenses globalmente.',t:'Ecossistema',r:109,a:142},
+  {i:'🔒',n:'Segurança',d:'Proteção de dados e sistemas seguros para empresas.',t:'IT & Security',r:109,a:202},
+  {i:'📱',n:'Apps Móveis',d:'Aplicações nativas para iOS e Android.',t:'KoneXon Pay',r:109,a:262},
+  {i:'🌐',n:'Redes',d:'Infraestrutura de redes e conectividade para empresas.',t:'KoneXon Web',r:109,a:322},
+];
+const eco=document.getElementById('eco');
+const tt=document.getElementById('tt');
+const CX=180,CY=180;
+nodes.forEach(n=>{
+  const rad=n.a*Math.PI/180;
+  const x=CX+n.r*Math.cos(rad);
+  const y=CY+n.r*Math.sin(rad);
+  const el=document.createElement('div');
+  el.className='snode';
+  el.style.cssText=`left:${x-23}px;top:${y-23}px;`;
+  el.innerHTML=`<span class="snode-icon">${n.i}</span><span class="snode-lbl">${n.n.split(' ')[0]}</span>`;
+  el.addEventListener('mouseenter',()=>{
+    const dx=x-CX,dy=y-CY,dist=Math.sqrt(dx*dx+dy*dy);
+    el.style.transform=`translate(${dx/dist*18}px,${dy/dist*18}px) scale(1.18)`;
+    document.getElementById('tt-n').textContent=n.n;
+    document.getElementById('tt-d').textContent=n.d;
+    document.getElementById('tt-t').textContent=n.t;
+    let tx=x+30,ty=y-20;
+    if(tx>210)tx=x-175;
+    if(ty<5)ty=y+8;
+    if(ty>320)ty=y-85;
+    tt.style.left=tx+'px';tt.style.top=ty+'px';
+    tt.classList.add('on');
+  });
+  el.addEventListener('mouseleave',()=>{el.style.transform='';tt.classList.remove('on');});
+  eco.appendChild(el);
+});
+const r1=[
+  {i:'💻',c:'sig',n:'Websites Profissionais',d:'Para empresas pequenas e grandes'},
+  {i:'⚙️',c:'sim',n:'Sistemas IT',d:'Infraestrutura e consultoria'},
+  {i:'🛒',c:'sib',n:'E-commerce',d:'Lojas online completas'},
+  {i:'🎨',c:'sig',n:'Design UI/UX',d:'Interfaces que encantam'},
+  {i:'🤖',c:'sim',n:'Inteligência Artificial',d:'Automação e inovação'},
+  {i:'📊',c:'sib',n:'Analytics & BI',d:'Decisões baseadas em dados'},
+  {i:'🔒',c:'sig',n:'Cibersegurança',d:'Proteção total de dados'},
+  {i:'📱',c:'sim',n:'Apps Móveis',d:'iOS e Android nativos'},
+];
+const r2=[
+  {i:'🌐',c:'sib',n:'Redes & Conectividade',d:'Infraestrutura de redes'},
+  {i:'🖥️',c:'sig',n:'Hardware & Redes',d:'Infraestrutura IT completa'},
+  {i:'💡',c:'sim',n:'Inovação Tech',d:'Soluções tecnológicas avançadas'},
+  {i:'📡',c:'sib',n:'KoneXon Mind',d:'Tecnologia & inovação'},
+  {i:'📈',c:'sig',n:'Crescimento Digital',d:'Escala o teu negócio'},
+  {i:'🤝',c:'sim',n:'Parcerias IT',d:'Projectos tecnológicos'},
+  {i:'☁️',c:'sib',n:'Cloud & Hosting',d:'Servidores e alojamento web'},
+  {i:'🧠',c:'sig',n:'Consultoria IT',d:'Estratégia e tecnologia'},
+];
+const r3=[
+  {i:'🚀',c:'sig',n:'Startups',d:'Aceleramos ideias guineenses'},
+  {i:'🔗',c:'sim',n:'Integrações',d:'Sistemas conectados entre si'},
+  {i:'📋',c:'sib',n:'Gestão de Projectos',d:'Do início ao fim, entregamos'},
+  {i:'🛡️',c:'sig',n:'Suporte Técnico',d:'Sempre disponíveis para ajudar'},
+  {i:'⚡',c:'sim',n:'Performance',d:'Sites rápidos e optimizados'},
+  {i:'🌐',c:'sib',n:'Presença Digital',d:'A tua marca online'},
+  {i:'📲',c:'sig',n:'Sistemas Mobile',d:'Soluções para telemóvel'},
+  {i:'🎯',c:'sim',n:'SEO & Marketing',d:'Mais visibilidade online'},
+];
+function build(items){
+  return [...items,...items].map(s=>`<div class="sc"><div class="si ${s.c}">${s.i}</div><div><div class="sn">${s.n}</div><div class="sd">${s.d}</div></div></div>`).join('');
+}
+document.getElementById('r1').innerHTML=build(r1);
+document.getElementById('r2').innerHTML=build(r2);
+document.getElementById('r3').innerHTML=build(r3);
+</script>
+</body>
+</html>
