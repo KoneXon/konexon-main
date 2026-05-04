@@ -24,7 +24,18 @@
     .navl a{font-size:.73rem;color:var(--muted);text-decoration:none;transition:color .2s;}
     .navl a:hover{color:var(--text);}
     .nav-cta{background:var(--green);color:#05050a!important;padding:.38rem 1.1rem;border-radius:100px;font-size:.72rem;font-weight:700;text-decoration:none;}
-    .lang-btn{font-size:.62rem;color:var(--muted2);border:1px solid var(--border);padding:.22rem .65rem;border-radius:100px;cursor:pointer;background:none;}
+    .lang-btn{font-size:.62rem;color:var(--muted2);border:1px solid var(--border);padding:.22rem .65rem;border-radius:100px;cursor:pointer;background:none;transition:color .2s,border-color .2s;}
+    .lang-btn:hover{color:var(--green);border-color:var(--green);}
+    /* HAMBURGER */
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.3rem;}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--muted);border-radius:2px;transition:all .3s;}
+    .mob-menu{display:none;position:fixed;inset:0;background:rgba(5,5,10,.98);z-index:98;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+    .mob-menu.open{display:flex;}
+    .mob-menu a{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;color:var(--muted);text-decoration:none;}
+    .mob-menu a:hover{color:var(--text);}
+    .mob-menu .nav-cta{font-size:1rem;padding:.7rem 2rem;}
+    /* MAX WIDTH WRAPPER */
+    .wrap{max-width:1200px;margin:0 auto;width:100%;}
     /* HERO */
     .hero{display:flex;align-items:center;justify-content:center;gap:3rem;position:relative;overflow:hidden;padding:5rem 3rem;min-height:520px;}
     .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,232,122,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,232,122,.025) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);}
@@ -188,6 +199,59 @@
     .fl{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;letter-spacing:-.01em;}
     .fl em{font-style:normal;color:var(--green);}
     .ft{font-size:.62rem;color:var(--muted2);}
+
+    /* ── DESKTOP MAX-WIDTH ── */
+    .nav{max-width:100%;padding:.85rem 3rem;}
+    .hero,.about,.products,.founders,.contact,.video-section,.ticker-sec,.footer{padding-left:clamp(1.5rem,5vw,5rem);padding-right:clamp(1.5rem,5vw,5rem);}
+    .sec-hdr h2,.about-left h2{font-size:clamp(1.2rem,2.5vw,1.7rem);}
+    .hero h1{font-size:clamp(1.4rem,3vw,2.6rem);}
+
+    /* ── MOBILE ── */
+    @media(max-width:768px){
+      /* NAV */
+      .navl{display:none;}
+      .hamburger{display:flex;}
+      .nav{padding:.85rem 1.2rem;}
+
+      /* HERO — stack vertical */
+      .hero{flex-direction:column;padding:3rem 1.2rem;min-height:auto;gap:2rem;text-align:center;}
+      .eco{width:260px;height:260px;}
+      .er1{width:100px;height:100px;}
+      .er2{width:170px;height:170px;}
+      .er3{width:248px;height:248px;}
+      .eco-center{width:66px;height:66px;}
+      .eco-k{font-size:.9rem;}
+      .hero-text{max-width:100%;}
+      .hbtns{justify-content:center;}
+      .htag{font-size:.55rem;}
+
+      /* TICKER */
+      .ticker-hdr{padding:0 1.2rem 1.5rem;}
+
+      /* VIDEO */
+      .video-section{padding:2.5rem 1.2rem;}
+
+      /* ABOUT — stack */
+      .about{grid-template-columns:1fr;gap:2rem;padding:3rem 1.2rem;}
+
+      /* PRODUCTS — stack */
+      .products{padding:3rem 1.2rem;}
+      .pgrid{grid-template-columns:1fr;}
+
+      /* FOUNDERS — stack */
+      .founders{padding:3rem 1.2rem;}
+      .fgrid{grid-template-columns:1fr;max-width:100%;}
+
+      /* CONTACT */
+      .contact{padding:3rem 1.2rem;}
+      .contact-grid{grid-template-columns:1fr;}
+
+      /* FOOTER */
+      .footer{flex-direction:column;align-items:flex-start;padding:1.5rem 1.2rem;gap:.8rem;}
+
+      /* TECH NODES — smaller on mobile */
+      .tech-node-v{font-size:.5rem;padding:.25rem .5rem;}
+    }
   </style>
 </head>
 <body>
@@ -195,13 +259,27 @@
 <nav class="nav">
   <a href="#" class="logo">Kone<em>X</em>on</a>
   <ul class="navl">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#produtos">Produtos</a></li>
-    <li><a href="#fundadores">Fundadores</a></li>
-    <li><a href="#contact" class="nav-cta">Contacto</a></li>
+    <li><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
+    <li><a href="#produtos" data-pt="Produtos" data-en="Products">Produtos</a></li>
+    <li><a href="#fundadores" data-pt="Fundadores" data-en="Founders">Fundadores</a></li>
+    <li><a href="#contact" class="nav-cta" data-pt="Contacto" data-en="Contact">Contacto</a></li>
   </ul>
-  <button class="lang-btn">PT / EN</button>
+  <div style="display:flex;align-items:center;gap:.8rem;">
+    <button class="lang-btn" id="langBtn">EN</button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#sobre" onclick="closeMob()" data-pt="Sobre" data-en="About">Sobre</a>
+  <a href="#produtos" onclick="closeMob()" data-pt="Produtos" data-en="Products">Produtos</a>
+  <a href="#fundadores" onclick="closeMob()" data-pt="Fundadores" data-en="Founders">Fundadores</a>
+  <a href="#contact" class="nav-cta" onclick="closeMob()" data-pt="Contacto" data-en="Contact">Contacto</a>
+  <button class="lang-btn" id="langBtn2" style="font-size:.9rem;padding:.4rem 1rem;">EN</button>
+</div>
 
 <section class="hero">
   <div class="hero-grid"></div>
@@ -478,6 +556,126 @@ function build(items){
 document.getElementById('r1').innerHTML=build(r1);
 document.getElementById('r2').innerHTML=build(r2);
 document.getElementById('r3').innerHTML=build(r3);
+
+// ── HAMBURGER ──
+const ham=document.getElementById('hamburger');
+const mob=document.getElementById('mobMenu');
+ham.addEventListener('click',()=>mob.classList.toggle('open'));
+function closeMob(){mob.classList.remove('open');}
+
+// ── PT / EN TOGGLE ──
+const translations={
+  pt:{
+    'hero-tag':'Ecossistema de Conexões',
+    'hero-h1':'Conectamos os Guineenses<br>ao mundo <em>digital.</em>',
+    'hero-p':'A KoneXon cria websites, plataformas e serviços digitais para empresas e pessoas — na Guiné-Bissau e na diáspora. Tudo o que envolve IT, nós construímos.',
+    'btn-p':'Conhecer os produtos',
+    'btn-s':'Falar connosco →',
+    'ticker-label':'O que fazemos',
+    'ticker-title':'Serviços que movem o país.',
+    'ticker-sub':'Desenvolvimento web, IT, design, AI e inovação tecnológica — tudo construído para os Guineenses.',
+    'about-label':'Quem somos',
+    'about-h2':'Não somos apenas<br>uma empresa.',
+    'about-p1':'A KoneXon nasceu na Guiné-Bissau com uma missão clara — provar que o talento guineense não precisa de sair para criar produtos que competem globalmente.',
+    'about-p2':'Criamos websites para pequenas e grandes empresas, sistemas com inteligência artificial, consultoria IT e muito mais.',
+    'products-label':'Os nossos produtos',
+    'products-h2':'Um ecossistema. Várias soluções.',
+    'products-sub':'Cada produto é autónomo, focado e construído para dominar o seu espaço.',
+    'founders-label':'Fundadores',
+    'founders-h2':'As pessoas por trás da KoneXon.',
+    'founders-sub':'Dois estudantes de engenharia guineenses que fundaram a KoneXon juntos — com a missão de construir o futuro tecnológico do país.',
+    'contact-label':'Contacto',
+    'contact-h2':'Fala com a KoneXon.',
+    'contact-sub':'Parcerias, projectos, imprensa ou simplesmente queres saber mais — estamos aqui.',
+    'contact-note':'Respondemos em menos de 24 horas. Podes escrever em Português, Crioulo, Inglês ou Français.',
+    'footer-tag':'O Ecossistema de Conexões · Guiné-Bissau para o mundo.',
+    'footer-copy':'© 2026 KoneXon · Todos os direitos reservados',
+    'lang-btn':'EN',
+  },
+  en:{
+    'hero-tag':'The Connection Ecosystem',
+    'hero-h1':'Connecting Guineans<br>to the <em>digital</em> world.',
+    'hero-p':'KoneXon builds websites, platforms and digital services for businesses and people — in Guinea-Bissau and the diaspora. Everything IT, we build it.',
+    'btn-p':'Explore our products',
+    'btn-s':'Talk to us →',
+    'ticker-label':'What we do',
+    'ticker-title':'Services that move the country.',
+    'ticker-sub':'Web development, IT, design, AI and tech innovation — all built for Guineans.',
+    'about-label':'Who we are',
+    'about-h2':'We are not just<br>a company.',
+    'about-p1':'KoneXon was born in Guinea-Bissau with one clear mission — to prove that Guinean talent does not need to leave to build world-class products.',
+    'about-p2':'We build websites for small and large businesses, AI-powered systems, IT consultancy and much more.',
+    'products-label':'Our products',
+    'products-h2':'One ecosystem. Many solutions.',
+    'products-sub':'Each product is autonomous, focused and built to dominate its space.',
+    'founders-label':'Founders',
+    'founders-h2':'The people behind KoneXon.',
+    'founders-sub':'Two Guinean engineering students who co-founded KoneXon — with a mission to build the country\'s technological future.',
+    'contact-label':'Contact',
+    'contact-h2':'Talk to KoneXon.',
+    'contact-sub':'Partnerships, projects, press or just want to know more — we\'re here.',
+    'contact-note':'We reply within 24 hours. You can write in Portuguese, Creole, English or French.',
+    'footer-tag':'The Connection Ecosystem · Guinea-Bissau to the world.',
+    'footer-copy':'© 2026 KoneXon · All rights reserved',
+    'lang-btn':'PT',
+  }
+};
+
+let lang='pt';
+
+function applyLang(l){
+  const t=translations[l];
+  // nav links
+  document.querySelectorAll('[data-pt]').forEach(el=>{
+    el.textContent=l==='pt'?el.dataset.pt:el.dataset.en;
+  });
+  // hero
+  document.querySelector('.htag').innerHTML=`<div class="hdot"></div>${t['hero-tag']}`;
+  document.querySelector('.hero h1').innerHTML=t['hero-h1'];
+  document.querySelector('.hero p').innerHTML=t['hero-p'];
+  document.querySelector('.btn-p').textContent=t['btn-p'];
+  document.querySelector('.btn-s').textContent=t['btn-s'];
+  // ticker
+  document.querySelector('.slabel').textContent=t['ticker-label'];
+  document.querySelector('.stitle').textContent=t['ticker-title'];
+  document.querySelector('.ssub').textContent=t['ticker-sub'];
+  // about
+  const aboutSec=document.getElementById('sobre');
+  aboutSec.querySelector('.slabel').textContent=t['about-label'];
+  aboutSec.querySelector('h2').innerHTML=t['about-h2'];
+  const aboutPs=aboutSec.querySelectorAll('.about-left p');
+  aboutPs[0].textContent=t['about-p1'];
+  aboutPs[1].textContent=t['about-p2'];
+  // products
+  const prodSec=document.getElementById('produtos');
+  prodSec.querySelector('.slabel').textContent=t['products-label'];
+  prodSec.querySelector('h2').textContent=t['products-h2'];
+  prodSec.querySelector('.sec-hdr p').textContent=t['products-sub'];
+  // founders
+  const foundSec=document.getElementById('fundadores');
+  foundSec.querySelector('.slabel').textContent=t['founders-label'];
+  foundSec.querySelector('h2').textContent=t['founders-h2'];
+  foundSec.querySelector('.sec-hdr p').textContent=t['founders-sub'];
+  // contact
+  const contSec=document.getElementById('contact');
+  contSec.querySelector('.slabel').textContent=t['contact-label'];
+  contSec.querySelector('h2').textContent=t['contact-h2'];
+  contSec.querySelector('.sec-hdr p').textContent=t['contact-sub'];
+  contSec.querySelector('.contact-note').textContent=t['contact-note'];
+  // footer
+  document.querySelector('.ft').textContent=t['footer-tag'];
+  // lang buttons
+  document.getElementById('langBtn').textContent=t['lang-btn'];
+  document.getElementById('langBtn2').textContent=t['lang-btn'];
+}
+
+function toggleLang(){
+  lang=lang==='pt'?'en':'pt';
+  applyLang(lang);
+}
+
+document.getElementById('langBtn').addEventListener('click',toggleLang);
+document.getElementById('langBtn2').addEventListener('click',()=>{toggleLang();closeMob();});
 </script>
 </body>
 </html>
