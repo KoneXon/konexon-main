@@ -49,7 +49,7 @@
     @keyframes sp2{to{transform:translate(-50%,-50%) rotate(-360deg)}}
     .eco-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 0 8px rgba(0,232,122,.12),0 0 40px rgba(0,232,122,.2);}
     .eco-k{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#05050a;letter-spacing:-.03em;}
-    .snode{position:absolute;width:46px;height:46px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.4);transition:transform .35s cubic-bezier(.34,1.56,.64,1),border-color .25s,box-shadow .25s;z-index:5;}
+    .snode{position:absolute;width:44px;height:44px;border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.4);transition:transform .35s cubic-bezier(.34,1.56,.64,1),border-color .25s,box-shadow .25s;z-index:5;}
     .snode:hover{border-color:rgba(0,232,122,.5);box-shadow:0 0 20px rgba(0,232,122,.25);z-index:20;}
     .snode-icon{font-size:18px;line-height:1;}
     .snode-lbl{font-size:7px;color:rgba(255,255,255,.4);margin-top:2px;white-space:nowrap;font-family:'DM Sans',sans-serif;}
@@ -215,7 +215,7 @@
 
       /* HERO — stack vertical */
       .hero{flex-direction:column;padding:3rem 1.2rem;min-height:auto;gap:2rem;text-align:center;}
-      .eco{width:300px;height:300px;}
+      .eco{width:280px;height:280px;}
       .er1{width:160px;height:160px;}
       .er2{width:240px;height:240px;}
       .er3{width:290px;height:290px;}
@@ -502,16 +502,21 @@ const nodes=[
 document.addEventListener('DOMContentLoaded',()=>{
 const eco=document.getElementById('eco');
 const tt=document.getElementById('tt');
-const CX=200,CY=200;
 
-// 3 órbitas com raios calibrados:
-// KX center = 84px diameter = 42px radius
-// Icon = 46px → half = 23px
-// Órbita 1: raio 80  (KX borda=42 + gap12 + icon_half23 = 77 → 80)
-// Órbita 2: raio 130 (80 + gap4 + icon46 + gap0 = 130)
-// Órbita 3: raio 178 (130 + gap2 + icon46 = 178) — cabe dentro dos 200px
-const RADII={1:82, 2:128, 3:172};
-const SPEEDS={1:0.004, 2:-0.0025, 3:0.0018}; // alternado
+// Raios como percentagem do tamanho do eco — adapta a qualquer tamanho de ecrã
+// KX = 84px (21% do eco), Icon = 46px (11.5%)
+// Órbita 1: 22% do eco (afastada do KX)
+// Órbita 2: 34% do eco
+// Órbita 3: 46% do eco (dentro do anel exterior)
+const RATIO={1:0.22, 2:0.34, 3:0.46};
+const SPEEDS={1:0.004, 2:-0.0025, 3:0.0018};
+
+function getSize(){
+  const s=eco.offsetWidth;
+  const cx=s/2, cy=s/2;
+  const radii={1:s*RATIO[1], 2:s*RATIO[2], 3:s*RATIO[3]};
+  return {cx,cy,radii};
+}
 
 const orbit1=nodes.filter(n=>n.r===1);
 const orbit2=nodes.filter(n=>n.r===2);
@@ -540,11 +545,12 @@ nodes.forEach((n)=>{
     document.getElementById('tt-n').textContent=name;
     document.getElementById('tt-d').textContent=desc;
     document.getElementById('tt-t').textContent=n.t;
-    let tx=parseFloat(el.style.left)+52;
-    let ty=parseFloat(el.style.top)-8;
-    if(tx>240)tx=parseFloat(el.style.left)-188;
-    if(ty<5)ty=parseFloat(el.style.top)+52;
-    if(ty>320)ty=parseFloat(el.style.top)-95;
+    const eW=eco.offsetWidth;
+    let tx=parseFloat(el.style.left)+50;
+    let ty=parseFloat(el.style.top)-10;
+    if(tx>eW*0.55)tx=parseFloat(el.style.left)-185;
+    if(ty<10)ty=parseFloat(el.style.top)+50;
+    if(ty>eW*0.75)ty=parseFloat(el.style.top)-90;
     tt.style.left=tx+'px';tt.style.top=ty+'px';
     tt.classList.add('on');
   });
@@ -566,18 +572,19 @@ function animateOrbit(){
   angles[2]+=SPEEDS[2];
   angles[3]+=SPEEDS[3];
 
-  // reset counters
-  const cnt={1:0,2:0,3:0};
+  const {cx,cy,radii}=getSize();
+  const half=eco.offsetWidth*0.058; // metade do ícone relativa ao eco
 
+  const cnt={1:0,2:0,3:0};
   nodes.forEach((n)=>{
     const orb=n.r;
     const i=cnt[orb]++;
     const a=bases[orb][i]+angles[orb];
-    const r=RADII[orb];
-    const x=CX+r*Math.cos(a);
-    const y=CY+r*Math.sin(a);
-    n._el.style.left=(x-23)+'px';
-    n._el.style.top =(y-23)+'px';
+    const r=radii[orb];
+    const x=cx+r*Math.cos(a);
+    const y=cy+r*Math.sin(a);
+    n._el.style.left=(x-half)+'px';
+    n._el.style.top =(y-half)+'px';
   });
 
   requestAnimationFrame(animateOrbit);
@@ -664,6 +671,13 @@ const translations={
     'footer-tag':'O Ecossistema de Conexões · Guiné-Bissau para o mundo.',
     'footer-copy':'© 2026 KoneXon · Todos os direitos reservados',
     'lang-btn':'EN',
+    'founder-label-mm':'Co-Fundador',
+    'founder-role-mm':'Tech & Vision',
+    'founder-bio-mm':'Estudante de Engenharia Informática, natural da Guiné-Bissau. Co-fundou a KoneXon com a missão de provar que o talento guineense não precisa de sair para vencer.',
+    'founder-skills':'Áreas de interesse',
+    'founder-label-je':'Co-Fundadora',
+    'founder-role-je':'Operations & Tech',
+    'founder-bio-je':'Estudante de Engenharia, natural da Guiné-Bissau. Co-fundou a KoneXon para conectar pessoas, negócios e tecnologia — dentro e fora do país.',
   },
   en:{
     'hero-tag':'The Connection Ecosystem',
@@ -691,6 +705,13 @@ const translations={
     'footer-tag':'The Connection Ecosystem · Guinea-Bissau to the world.',
     'footer-copy':'© 2026 KoneXon · All rights reserved',
     'lang-btn':'PT',
+    'founder-label-mm':'Co-Founder',
+    'founder-role-mm':'Tech & Vision',
+    'founder-bio-mm':'Computer Engineering student from Guinea-Bissau. Co-founded KoneXon with the mission of proving that Guinean talent does not need to leave to succeed.',
+    'founder-skills':'Areas of interest',
+    'founder-label-je':'Co-Founder',
+    'founder-role-je':'Operations & Tech',
+    'founder-bio-je':'Engineering student from Guinea-Bissau. Co-founded KoneXon to connect people, businesses and technology — inside and outside the country.',
   }
 };
 
@@ -740,6 +761,20 @@ function applyLang(l){
   // lang buttons
   document.getElementById('langBtn').textContent=t['lang-btn'];
   document.getElementById('langBtn2').textContent=t['lang-btn'];
+  // founders
+  const fcards=document.querySelectorAll('.fcard');
+  if(fcards.length>=2){
+    // Card MM
+    fcards[0].querySelector('.founder-label').textContent=t['founder-label-mm'];
+    fcards[0].querySelector('.frole').textContent=t['founder-role-mm'];
+    fcards[0].querySelector('.fbio').textContent=t['founder-bio-mm'];
+    fcards[0].querySelector('.fskills-label').textContent=t['founder-skills'];
+    // Card JE
+    fcards[1].querySelector('.founder-label').textContent=t['founder-label-je'];
+    fcards[1].querySelector('.frole').textContent=t['founder-role-je'];
+    fcards[1].querySelector('.fbio').textContent=t['founder-bio-je'];
+    fcards[1].querySelector('.fskills-label').textContent=t['founder-skills'];
+  }
   // update orbit node labels
   nodes.forEach(n=>{
     if(!n._el) return;
