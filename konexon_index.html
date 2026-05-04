@@ -499,6 +499,7 @@ const nodes=[
   {i:'📈',n:'Crescimento',ne:'Growth',d:'Estratégias para escalar negócios guineenses globalmente.',de:'Strategies to scale Guinean businesses globally.',t:'Ecosystem',r:3},
   {i:'🏦',n:'Conta Digital',ne:'Digital Account',d:'Abre uma conta sem precisar de ir a um banco físico.',de:'Open an account without visiting a physical bank.',t:'KoneXon Pay',r:3},
 ];
+document.addEventListener('DOMContentLoaded',()=>{
 const eco=document.getElementById('eco');
 const tt=document.getElementById('tt');
 const CX=200,CY=200;
@@ -582,6 +583,20 @@ function animateOrbit(){
   requestAnimationFrame(animateOrbit);
 }
 animateOrbit();
+
+// ── HAMBURGER ──
+const ham=document.getElementById('hamburger');
+const mob=document.getElementById('mobMenu');
+if(ham) ham.addEventListener('click',()=>mob.classList.toggle('open'));
+
+// ── LANG BUTTONS ──
+const b1=document.getElementById('langBtn');
+const b2=document.getElementById('langBtn2');
+if(b1) b1.addEventListener('click',toggleLang);
+if(b2) b2.addEventListener('click',()=>{toggleLang();closeMob();});
+
+}); // end DOMContentLoaded
+
 const r1=[
   {i:'💻',c:'sig',n:'Websites Profissionais',d:'Para empresas pequenas e grandes'},
   {i:'⚙️',c:'sim',n:'Sistemas IT',d:'Infraestrutura e consultoria'},
@@ -619,11 +634,7 @@ document.getElementById('r1').innerHTML=build(r1);
 document.getElementById('r2').innerHTML=build(r2);
 document.getElementById('r3').innerHTML=build(r3);
 
-// ── HAMBURGER ──
-const ham=document.getElementById('hamburger');
-const mob=document.getElementById('mobMenu');
-ham.addEventListener('click',()=>mob.classList.toggle('open'));
-function closeMob(){mob.classList.remove('open');}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
 
 // ── PT / EN TOGGLE ──
 const translations={
@@ -743,12 +754,7 @@ function toggleLang(){
   applyLang(lang);
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  const b1=document.getElementById('langBtn');
-  const b2=document.getElementById('langBtn2');
-  if(b1) b1.addEventListener('click',toggleLang);
-  if(b2) b2.addEventListener('click',()=>{toggleLang();closeMob();});
-});
+// lang buttons wired inside DOMContentLoaded above
 </script>
 </body>
 </html>
