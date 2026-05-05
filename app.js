@@ -2,10 +2,17 @@ const express = require('express');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
+const crypto = require('crypto');
 const path = require('path');
 const routes = require('./routes/index');
 
 const app = express();
+
+// ── NONCE (must run before helmet so the callback can read res.locals.nonce) ──
+app.use((req, res, next) => {
+  res.locals.nonce = crypto.randomBytes(16).toString('base64');
+  next();
+});
 
 // ── SECURITY HEADERS ──
 app.use(helmet({
@@ -14,7 +21,7 @@ app.use(helmet({
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-      scriptSrc: ["'self'"],
+      scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals.nonce}'`],
       imgSrc: ["'self'", 'data:'],
       connectSrc: ["'self'"],
       frameSrc: ["'none'"],

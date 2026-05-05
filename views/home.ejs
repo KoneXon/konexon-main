@@ -1,6 +1,7 @@
 <%- include('partials/head', { meta, lang }) %>
 <%- include('partials/nav', { page, lang }) %>
 
+<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
@@ -26,6 +27,7 @@
   </div>
 </section>
 
+<!-- ── TICKER ── -->
 <div class="ticker-sec">
   <div class="ticker-hdr">
     <p class="slabel"><%= c.ticker.label %></p>
@@ -37,6 +39,107 @@
   <div class="tw"><div class="tr tc" id="r3"></div></div>
 </div>
 
+<!-- ── 3 PILARES ── -->
+<section class="pillars-sec">
+  <div class="sec-hdr">
+    <p class="slabel"><%= lang === 'en' ? 'Why Konexon' : 'Porque o Konexon' %></p>
+    <h2><%= lang === 'en' ? 'Built for Guinea-Bissau\'s reality.' : 'Construído para a realidade da Guiné-Bissau.' %></h2>
+    <p><%= lang === 'en' ? 'Unstable networks, basic devices — we build for your conditions.' : 'Redes instáveis, dispositivos simples — construímos para as tuas condições.' %></p>
+  </div>
+  <div class="pillars-grid">
+    <% pillars.forEach(p => { %>
+    <div class="pillar-card <%= p.cls %>">
+      <div class="pillar-icon <%= p.icls %>"><%= p.icon %></div>
+      <div class="pillar-title"><%= p.title %></div>
+      <p class="pillar-desc"><%= p.desc %></p>
+      <div class="pillar-proof"><%= p.proof %></div>
+    </div>
+    <% }) %>
+  </div>
+  <div style="text-align:center;margin-top:2rem;">
+    <a href="/servicos" class="btn-s"><%= lang === 'en' ? 'See all services →' : 'Ver todos os serviços →' %></a>
+  </div>
+</section>
+
+<!-- ── PRODUTOS TEASER ── -->
+<section class="products" id="produtos" style="background:var(--bg);border-top:1px solid var(--border);">
+  <div class="sec-hdr">
+    <p class="slabel"><%= lang === 'en' ? 'Our products' : 'Os nossos produtos' %></p>
+    <h2><%= lang === 'en' ? 'One ecosystem. Many solutions.' : 'Um ecossistema. Várias soluções.' %></h2>
+    <p><%= lang === 'en' ? 'Each product is autonomous, focused and built to dominate its space.' : 'Cada produto é autónomo, focado e construído para dominar o seu espaço.' %></p>
+  </div>
+  <div class="pgrid">
+    <% products.forEach(p => { %>
+    <div class="pcard <%= p.cls %>">
+      <div class="pglow"></div>
+      <span class="pstatus <%= p.status %>"><%= p.statusLabel %></span>
+      <div class="picon"><%= p.icon %></div>
+      <div class="pname"><%- p.name %></div>
+      <p class="pdesc"><%= p.desc %></p>
+      <div class="ptags">
+        <% p.tags.forEach(tag => { %><span class="ptag"><%= tag %></span><% }) %>
+      </div>
+      <a href="<%= p.href %>" class="pcta"><%= p.cta %></a>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- ── SOBRE ── -->
+<section class="about" id="sobre">
+  <div class="about-left">
+    <p class="slabel"><%= lang === 'en' ? 'Who we are' : 'Quem somos' %></p>
+    <h2><%= lang === 'en' ? 'We are not just<br>a company.' : 'Não somos apenas<br>uma empresa.' %></h2>
+    <p><%= lang === 'en'
+      ? 'Konexon was born in Guinea-Bissau with one clear mission — to prove that Guinean talent does not need to leave to build world-class products.'
+      : 'O Konexon nasceu na Guiné-Bissau com uma missão clara — provar que o talento guineense não precisa de sair para criar produtos que competem globalmente.' %></p>
+    <p><%= lang === 'en'
+      ? 'We build websites for small and large businesses, AI-powered systems, IT consultancy and much more.'
+      : 'Criamos websites para pequenas e grandes empresas, sistemas com inteligência artificial, consultoria IT e muito mais.' %></p>
+    <div style="margin-top:1.2rem;">
+      <a href="/sobre" class="btn-s"><%= lang === 'en' ? 'Know the team →' : 'Conhecer a equipa →' %></a>
+    </div>
+  </div>
+  <div class="pillars">
+    <% aboutPillars.forEach(p => { %>
+    <div class="pillar">
+      <div class="pi"><%= p.icon %></div>
+      <div>
+        <div class="pt"><%= p.title %></div>
+        <div class="pd"><%= p.desc %></div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- ── FUNDADORES ── -->
+<section class="founders" style="background:var(--bg2);">
+  <div class="sec-hdr">
+    <p class="slabel"><%= lang === 'en' ? 'Founders' : 'Fundadores' %></p>
+    <h2><%= lang === 'en' ? 'The people behind Konexon.' : 'As pessoas por trás do Konexon.' %></h2>
+    <p><%= lang === 'en'
+      ? 'Two Guinean engineering students who co-founded Konexon — with a mission to build the country\'s technological future.'
+      : 'Dois estudantes de engenharia guineenses que fundaram o Konexon juntos — com a missão de construir o futuro tecnológico do país.' %></p>
+  </div>
+  <div class="fgrid">
+    <% founders.forEach(f => { %>
+    <div class="fcard">
+      <div class="founder-label"><%= f.label %></div>
+      <div class="favatar <%= f.cls %>"><%= f.initials %></div>
+      <div class="fname"><%= f.name %></div>
+      <div class="frole"><%= f.role %></div>
+      <p class="fbio"><%= f.bio %></p>
+      <div class="fskills-label"><%= f.skillsLabel %></div>
+      <div class="ftags">
+        <% f.skills.forEach(s => { %><span class="ftag"><%= s %></span><% }) %>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ── -->
 <section class="cta-banner">
   <div class="cta-banner-inner">
     <h2><%- lang === 'en' ? 'Ready to <em>get started?</em>' : 'Pronto para <em>começar?</em>' %></h2>
@@ -50,10 +153,10 @@
 
 <%- include('partials/footer', { lang }) %>
 
-<script>
-  const NODES = <%- JSON.stringify(nodes) %>;
+<script nonce="<%= nonce %>">
+  const NODES  = <%- JSON.stringify(nodes) %>;
   const TICKER = <%- JSON.stringify(ticker) %>;
-  const LANG = '<%= lang %>';
+  const LANG   = '<%= lang %>';
 </script>
 <script src="/js/orbit.js"></script>
 <script src="/js/ticker.js"></script>

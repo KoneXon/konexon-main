@@ -9,5 +9,9 @@ exports.index = (req, res) => {
     c: t[lang].home,
     nodes: shared.nodes,
     ticker: shared.ticker,
+    pillars: t[lang].servicos.pillars,
+    products: t[lang].produtos.products,
+    aboutPillars: t[lang].sobre.pillars,
+    founders: t[lang].sobre.founders,
   });
 };
