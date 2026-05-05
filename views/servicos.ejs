@@ -1,0 +1,64 @@
+<%- include('partials/head', { meta, lang }) %>
+<%- include('partials/nav', { page, lang }) %>
+
+<section class="page-hero">
+  <div class="hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="sales-badge"><div class="hdot"></div><%= c.badge %></div>
+    <h1><%- c.h2 %></h1>
+  </div>
+</section>
+
+<section class="sales">
+  <div class="sales-inner">
+    <div class="sales-body">
+      <div class="sales-copy">
+        <% c.copy.forEach(p => { %><p><%- p %></p><% }) %>
+      </div>
+      <div class="sales-cta-block">
+        <div class="sales-cta-q"><%- c.cta.q %></div>
+        <p class="sales-cta-sub"><%- c.cta.sub %></p>
+        <a href="/contacto" class="sales-cta-btn"><%= c.cta.btn %></a>
+        <p style="font-size:.65rem;color:var(--muted2);margin-top:.3rem;"><%= lang === 'en' ? 'We reply within 24 hours.' : 'Respondemos em menos de 24 horas.' %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pillars-sec">
+  <div class="sec-hdr">
+    <p class="slabel"><%= lang === 'en' ? 'Why Konexon' : 'Porque o Konexon' %></p>
+    <h2><%= c.pillarsTitle %></h2>
+    <p><%= c.pillarsSub %></p>
+  </div>
+  <div class="pillars-grid">
+    <% c.pillars.forEach(p => { %>
+    <div class="pillar-card <%= p.cls %>">
+      <div class="pillar-icon <%= p.icls %>"><%= p.icon %></div>
+      <div class="pillar-title"><%= p.title %></div>
+      <p class="pillar-desc"><%= p.desc %></p>
+      <div class="pillar-proof"><%= p.proof %></div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<section class="audience">
+  <div class="sec-hdr">
+    <p class="slabel"><%= lang === 'en' ? 'Who is Konexon for' : 'Para quem é o Konexon' %></p>
+    <h2><%= c.audienceTitle %></h2>
+    <p><%= c.audienceSub %></p>
+  </div>
+  <div class="audience-grid">
+    <% c.audience.forEach(a => { %>
+    <div class="aud-card">
+      <div class="aud-icon"><%= a.icon %></div>
+      <div class="aud-title"><%= a.title %></div>
+      <div class="aud-problem"><%= a.problem %></div>
+      <p class="aud-solution"><%- a.solution %></p>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('partials/footer', { lang }) %>

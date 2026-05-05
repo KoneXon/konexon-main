@@ -1,0 +1,26 @@
+<% const nav = lang === 'en'
+  ? { servicos:'Services', sobre:'About', produtos:'Products', cta:'Get a Quote' }
+  : { servicos:'Serviços', sobre:'Sobre', produtos:'Produtos', cta:'Pedir Proposta' };
+  const otherLang = lang === 'pt' ? 'en' : 'pt';
+%>
+<nav class="nav">
+  <a href="/" class="logo">Kone<em>X</em>on</a>
+  <ul class="navl">
+    <li><a href="/servicos" class="<%= page==='servicos'?'nav-active':'' %>"><%= nav.servicos %></a></li>
+    <li><a href="/sobre" class="<%= page==='sobre'?'nav-active':'' %>"><%= nav.sobre %></a></li>
+    <li><a href="/produtos" class="<%= page==='produtos'?'nav-active':'' %>"><%= nav.produtos %></a></li>
+    <li><a href="/contacto" class="nav-cta"><%= nav.cta %></a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:.8rem;">
+    <a href="?lang=<%= otherLang %>" class="lang-btn"><%= otherLang.toUpperCase() %></a>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a href="/servicos" onclick="closeMob()"><%= nav.servicos %></a>
+  <a href="/sobre" onclick="closeMob()"><%= nav.sobre %></a>
+  <a href="/produtos" onclick="closeMob()"><%= nav.produtos %></a>
+  <a href="/contacto" class="nav-cta" onclick="closeMob()"><%= nav.cta %></a>
+  <a href="?lang=<%= otherLang %>" class="lang-btn" style="font-size:.9rem;padding:.4rem 1rem;"><%= otherLang.toUpperCase() %></a>
+</div>

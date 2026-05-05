@@ -1,0 +1,16 @@
+<%- include('partials/head', { meta: { title: '404 — Konexon', description: 'Página não encontrada.' }, lang }) %>
+<%- include('partials/nav', { page: '', lang }) %>
+
+<section class="page-hero" style="min-height:60vh;display:flex;align-items:center;">
+  <div class="hero-grid"></div>
+  <div class="page-hero-inner" style="text-align:center;width:100%;">
+    <p class="slabel">404</p>
+    <h1 style="font-size:clamp(2rem,6vw,4rem);">Página <em>não encontrada.</em></h1>
+    <p style="color:var(--muted);margin-top:1rem;"><%= lang === 'en' ? 'The page you are looking for does not exist.' : 'A página que procuras não existe.' %></p>
+    <div style="margin-top:2rem;">
+      <a href="/" class="btn-p"><%= lang === 'en' ? '← Back to home' : '← Voltar ao início' %></a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer', { lang }) %>

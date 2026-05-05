@@ -1,0 +1,31 @@
+<%- include('partials/head', { meta, lang }) %>
+<%- include('partials/nav', { page, lang }) %>
+
+<section class="page-hero">
+  <div class="hero-grid"></div>
+  <div class="page-hero-inner">
+    <p class="slabel"><%= c.label %></p>
+    <h1><%= c.h2 %></h1>
+    <p style="color:var(--muted);font-size:.84rem;margin-top:.8rem;"><%= c.sub %></p>
+  </div>
+</section>
+
+<section class="products" id="produtos">
+  <div class="pgrid">
+    <% c.products.forEach(p => { %>
+    <div class="pcard <%= p.cls %>">
+      <div class="pglow"></div>
+      <span class="pstatus <%= p.status %>"><%= p.statusLabel %></span>
+      <div class="picon"><%= p.icon %></div>
+      <div class="pname"><%- p.name %></div>
+      <p class="pdesc"><%= p.desc %></p>
+      <div class="ptags">
+        <% p.tags.forEach(tag => { %><span class="ptag"><%= tag %></span><% }) %>
+      </div>
+      <a href="<%= p.href %>" class="pcta"><%= p.cta %></a>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('partials/footer', { lang }) %>

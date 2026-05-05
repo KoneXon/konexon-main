@@ -1,0 +1,70 @@
+<%- include('partials/head', { meta, lang }) %>
+<%- include('partials/nav', { page, lang }) %>
+
+<section class="page-hero">
+  <div class="hero-grid"></div>
+  <div class="page-hero-inner">
+    <p class="slabel"><%= c.label %></p>
+    <h1><%= c.h2 %></h1>
+    <p style="color:var(--muted);font-size:.84rem;margin-top:.8rem;"><%= c.sub %></p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+
+    <% if (flash === 'success') { %>
+    <div class="flash flash-ok"><%= c.success %></div>
+    <% } else if (flash === 'error') { %>
+    <div class="flash flash-err"><%= c.error %></div>
+    <% } %>
+
+    <form class="contact-form" action="/contacto" method="POST" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nome"><%= lang === 'en' ? 'Name' : 'Nome' %> <span class="req">*</span></label>
+          <input type="text" id="nome" name="nome" placeholder="<%= c.form.namePlaceholder %>" maxlength="100" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="<%= c.form.emailPlaceholder %>" maxlength="150" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tipo"><%= c.form.tipoLabel %></label>
+        <select id="tipo" name="tipo">
+          <% c.form.tipos.forEach(tipo => { %>
+          <option value="<%= tipo %>"><%= tipo %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mensagem"><%= lang === 'en' ? 'Message' : 'Mensagem' %> <span class="req">*</span></label>
+        <textarea id="mensagem" name="mensagem" rows="5" placeholder="<%= c.form.msgPlaceholder %>" maxlength="1000" required></textarea>
+      </div>
+      <button type="submit" class="btn-p form-submit"><%= c.form.btn %></button>
+    </form>
+
+    <div class="contact-grid" style="margin-top:2rem;">
+      <% c.info.forEach(info => { %>
+      <div class="contact-card">
+        <div class="contact-icon"><%= info.icon %></div>
+        <div>
+          <div class="contact-type"><%= info.type %></div>
+          <div class="contact-val">
+            <% if (info.href) { %><a href="<%= info.href %>"><%= info.val %></a><% } else { %><%= info.val %><% } %>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <div class="contact-cta">
+      <p><%- c.ctaText %></p>
+      <a href="mailto:konexon.gw@gmail.com?subject=Proposta%20Konexon"><%= lang === 'en' ? '✉️ Send free proposal' : '✉️ Enviar proposta gratuita' %></a>
+    </div>
+    <p class="contact-note"><%= c.note %></p>
+  </div>
+</section>
+
+<%- include('partials/footer', { lang }) %>

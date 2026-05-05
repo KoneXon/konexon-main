@@ -1,0 +1,220 @@
+// ── MODEL: all site content in PT and EN ──
+
+const t = {
+  pt: {
+    nav: {
+      servicos: 'Serviços', sobre: 'Sobre', produtos: 'Produtos',
+      fundadores: 'Fundadores', cta: 'Pedir Proposta',
+    },
+    home: {
+      meta: { title: 'Konexon — Websites & Apps para Guiné-Bissau', description: 'O Konexon constrói websites profissionais e aplicações web para escolas e pequenos negócios na Guiné-Bissau.' },
+      tag: 'Ecossistema de Conexões',
+      h1: 'O teu negócio merece<br>um site que funciona <em>sempre.</em>',
+      p: 'O Konexon constrói websites e aplicações para escolas e pequenos negócios na Guiné-Bissau — seguros, rápidos e que funcionam mesmo quando a internet falha.',
+      btn1: 'Ver os nossos serviços', btn2: 'Pedir uma proposta →',
+      ticker: { label: 'O que fazemos', title: 'Serviços que movem o país.', sub: 'Desenvolvimento web, IT, design, AI e inovação tecnológica — tudo construído para os Guineenses.' },
+    },
+    servicos: {
+      meta: { title: 'Serviços — Konexon', description: 'Websites seguros, offline-first e optimizados para redes lentas. Konexon para escolas e negócios em Guiné-Bissau.' },
+      badge: 'Konexon Web · Serviços',
+      h2: 'O teu negócio não pode parar<br>quando falta <em>internet.</em>',
+      copy: [
+        'Na Guiné-Bissau, a ligação à internet nem sempre é garantida. O <strong>Konexon</strong> constrói websites e aplicações que continuam a funcionar mesmo quando a rede cai — os dados ficam guardados no dispositivo e sincronizam quando a internet voltar.',
+        'Tens medo de ser hackeado? Com o <strong>Konexon</strong>, o teu site está protegido contra os ataques mais comuns. Os dados dos teus clientes ficam seguros, o acesso é feito com palavra-passe forte, e fazemos backups automáticos todos os dias.',
+        'Estás numa zona com rede lenta ou usas um telemóvel antigo? Sem problema. Os nossos sites carregam em segundos — mesmo em 2G. Leves, rápidos e pensados para a nossa realidade.',
+      ],
+      cta: { q: 'Posso enviar-te uma <em>proposta gratuita</em> esta semana?', sub: 'Diz-nos o que precisas — escola, loja, organização ou qualquer negócio — e o <strong>Konexon</strong> prepara uma solução à tua medida, sem compromisso.', btn: '✉️ Sim, quero uma proposta' },
+      pillarsTitle: 'Três razões para escolher o Konexon.',
+      pillarsSub: 'Construímos com a realidade guineense em mente — redes instáveis, dispositivos simples e a necessidade de manter os dados sempre seguros.',
+      pillars: [
+        { icon: '🔒', cls: 'p-sec', icls: 'pi-green', title: 'Seguro como um cofre', desc: 'Protecção contra hackers, HTTPS activado por padrão, autenticação segura, backups diários automáticos e política de palavras-passe fortes. Os dados dos teus clientes estão sempre protegidos.', proof: '✓ Protecção contra SQL injection, XSS e CSRF' },
+        { icon: '📴', cls: 'p-off', icls: 'pi-blue', title: 'Funciona sem internet', desc: 'O site continua a trabalhar quando a rede cai. Os pais vêem as notas dos filhos, a loja aceita encomendas, a escola regista matrículas — tudo offline. Os dados sincronizam quando a internet volta.', proof: '✓ Tecnologia offline-first com sincronização automática' },
+        { icon: '⚡', cls: 'p-spd', icls: 'pi-gold', title: 'Rápido em qualquer rede', desc: 'Optimizado para redes 2G e 3G e dispositivos com pouca memória. O site carrega em segundos — mesmo com sinal fraco, mesmo num telemóvel básico. Os teus clientes não esperam.', proof: '✓ Optimizado para mobile e redes lentas' },
+      ],
+      audienceTitle: 'Problemas reais. Soluções que funcionam.',
+      audienceSub: 'Conhecemos os desafios do dia-a-dia das escolas e pequenos negócios na Guiné-Bissau.',
+      audience: [
+        { icon: '🏫', title: 'Escolas', problem: '❌ "A escola perdeu as matrículas porque o computador avariou e não havia cloud."', solution: 'Com o Konexon, as matrículas, notas e dados dos alunos ficam guardados em segurança. Os pais conseguem ver as notas mesmo sem rede. <strong>Nada se perde.</strong>' },
+        { icon: '🏪', title: 'Pequenos negócios', problem: '❌ "O cliente quer um site mas tem medo de ser hackeado."', solution: 'O Konexon instala segurança real desde o primeiro dia. Os teus clientes navegam com confiança e os teus dados de negócio ficam <strong>sempre protegidos.</strong>' },
+        { icon: '📡', title: 'Zonas sem rede fixa', problem: '❌ "O negócio está numa zona sem internet fixa, só telemóvel com rede instável."', solution: 'O Konexon foi construído para isso. O sistema funciona offline e sincroniza tudo quando a rede volta. <strong>A instabilidade não te para.</strong>' },
+      ],
+    },
+    sobre: {
+      meta: { title: 'Sobre — Konexon', description: 'Conhece a equipa e a missão do Konexon — tecnologia construída na Guiné-Bissau para o mundo.' },
+      label: 'Quem somos', h2: 'Não somos apenas<br>uma empresa.',
+      p1: 'O Konexon nasceu na Guiné-Bissau com uma missão clara — provar que o talento guineense não precisa de sair para criar produtos que competem globalmente.',
+      p2: 'Criamos websites para pequenas e grandes empresas, sistemas com inteligência artificial, consultoria IT e muito mais.',
+      pillars: [
+        { icon: '⚡', title: 'Tecnologia com propósito', desc: 'Websites, sistemas e IT para qualquer empresa — simples ou complexo, construímos.' },
+        { icon: '🌍', title: 'Guiné-Bissau para o mundo', desc: 'Nascemos aqui, pensamos global. Cada produto eleva o nome do país no mapa digital africano.' },
+        { icon: '🔗', title: 'Conexões que transformam', desc: 'Conectamos pessoas, negócios e tecnologia — digital, rápido e sem fronteiras.' },
+        { icon: '💻', title: 'IT para todas as empresas', desc: 'Consultoria, desenvolvimento e suporte técnico — do projecto mais simples ao mais complexo.' },
+      ],
+      foundersTitle: 'As pessoas por trás do Konexon.',
+      foundersSub: 'Dois estudantes de engenharia guineenses que fundaram o Konexon juntos — com a missão de construir o futuro tecnológico do país.',
+      founders: [
+        { initials: 'MN', cls: 'amm', name: 'Marcelino Nauagna Mendes', role: 'Tech & Vision', label: 'Co-Fundador', bio: 'Estudante de Engenharia Informática, natural da Guiné-Bissau. Co-fundou o Konexon com a missão de provar que o talento guineense não precisa de sair para vencer.', skillsLabel: 'Áreas de interesse', skills: ['AI', 'Cybersecurity', 'Engineering', 'Web Dev', 'Mindset'] },
+        { initials: 'JE', cls: 'aje', name: 'Josefina Elawar da Costa', role: 'Operations & Tech', label: 'Co-Fundadora', bio: 'Estudante de Engenharia, natural da Guiné-Bissau. Co-fundou o Konexon para conectar pessoas, negócios e tecnologia — dentro e fora do país.', skillsLabel: 'Áreas de interesse', skills: ['Engineering', 'Redes', 'AI', 'IT', 'Operações', 'Estratégia'] },
+      ],
+    },
+    produtos: {
+      meta: { title: 'Produtos — Konexon', description: 'Konexon Serviço, Konexon Web e Konexon Mind — o ecossistema de tecnologia guineense.' },
+      label: 'Os nossos produtos', h2: 'Um ecossistema. Várias soluções.',
+      sub: 'Cada produto é autónomo, focado e construído para dominar o seu espaço.',
+      products: [
+        { icon: '🛠️', cls: 'pcard-pay', status: 'ps-act', statusLabel: 'Activo', name: 'KoneXon <em>Serviço</em>', desc: 'Construímos websites profissionais, sistemas de gestão e aplicações web para escolas e pequenos negócios — seguros, offline-first e optimizados para redes lentas.', tags: ['Web Dev', 'Offline-first', 'Segurança', 'IT'], cta: 'Pedir proposta →', href: '/contacto' },
+        { icon: '💻', cls: 'pcard-web', status: 'ps-act', statusLabel: 'Activo', name: 'KoneXon <em>Web</em>', desc: 'Criamos websites profissionais, e-commerce, sistemas de gestão e soluções IT para empresas pequenas, startups e organizações.', tags: ['Web Dev', 'Design', 'AI', 'IT'], cta: 'Saber mais →', href: '/contacto' },
+        { icon: '📡', cls: 'pcard-mind', status: 'ps-tba', statusLabel: 'A anunciar', name: 'KoneXon <em>Mind</em>', desc: 'Uma plataforma de informação tecnológica — notícias, análises e tendências sobre inovação digital na Guiné-Bissau e no mundo.', tags: ['Tecnologia', 'África', 'Inovação'], cta: 'Fica a saber →', href: '/contacto' },
+      ],
+    },
+    contacto: {
+      meta: { title: 'Contacto — Konexon', description: 'Fala com o Konexon. Pede uma proposta gratuita para o teu website ou aplicação.' },
+      label: 'Contacto', h2: 'Fala com o Konexon.',
+      sub: 'Parcerias, projectos ou simplesmente queres saber mais — estamos aqui.',
+      form: { namePlaceholder: 'O teu nome', emailPlaceholder: 'O teu email', tipoLabel: 'Tipo de projecto', tipos: ['Website', 'Aplicação Web', 'Sistema para Escola', 'E-commerce', 'Consultoria IT', 'Outro'], msgPlaceholder: 'Descreve o teu projecto...', btn: '✉️ Enviar mensagem' },
+      info: [
+        { icon: '✉️', type: 'Email', val: 'konexon.gw@gmail.com', href: 'mailto:konexon.gw@gmail.com' },
+        { icon: '🌍', type: 'Localização', val: 'Bissau · Portugal', href: null },
+      ],
+      ctaText: 'Pronto para ter um site que <em>nunca para</em>?',
+      note: 'Respondemos em menos de 24 horas. Podes escrever em Português, Crioulo, Inglês ou Français.',
+      success: '✅ Mensagem enviada! Respondemos em menos de 24 horas.',
+      error: '❌ Algo correu mal. Tenta de novo ou envia um email directamente.',
+    },
+  },
+  en: {
+    nav: {
+      servicos: 'Services', sobre: 'About', produtos: 'Products',
+      fundadores: 'Founders', cta: 'Get a Quote',
+    },
+    home: {
+      meta: { title: 'Konexon — Websites & Apps for Guinea-Bissau', description: 'Konexon builds professional websites and web applications for schools and small businesses in Guinea-Bissau.' },
+      tag: 'The Connection Ecosystem',
+      h1: 'Your business deserves<br>a site that works <em>always.</em>',
+      p: 'Konexon builds websites and applications for schools and small businesses in Guinea-Bissau — secure, fast and working even when the internet fails.',
+      btn1: 'See our services', btn2: 'Request a proposal →',
+      ticker: { label: 'What we do', title: 'Services that move the country.', sub: 'Web development, IT, design, AI and tech innovation — all built for Guineans.' },
+    },
+    servicos: {
+      meta: { title: 'Services — Konexon', description: 'Secure, offline-first websites optimised for slow networks. Konexon for schools and businesses in Guinea-Bissau.' },
+      badge: 'Konexon Web · Services',
+      h2: 'Your business can\'t stop<br>when the <em>internet fails.</em>',
+      copy: [
+        'In Guinea-Bissau, internet connectivity is not always guaranteed. <strong>Konexon</strong> builds websites and apps that keep working even when the network drops — data is saved on the device and syncs when the internet returns.',
+        'Worried about being hacked? With <strong>Konexon</strong>, your site is protected against the most common attacks. Your clients\' data stays safe, access requires strong passwords, and we run automatic backups every day.',
+        'In a low-signal area or using an older phone? No problem. Our sites load in seconds — even on 2G. Lightweight, fast and built for our reality.',
+      ],
+      cta: { q: 'Can I send you a <em>free proposal</em> this week?', sub: 'Tell us what you need — school, shop, organisation or any business — and <strong>Konexon</strong> will build a solution tailored to you, with no obligation.', btn: '✉️ Yes, I want a proposal' },
+      pillarsTitle: 'Three reasons to choose Konexon.',
+      pillarsSub: 'We build with the Guinean reality in mind — unstable networks, basic devices and the need to keep data safe at all times.',
+      pillars: [
+        { icon: '🔒', cls: 'p-sec', icls: 'pi-green', title: 'Secure as a vault', desc: 'Protection against hackers, HTTPS on by default, secure authentication, automatic daily backups and strong password policies. Your clients\' data is always protected.', proof: '✓ Protection against SQL injection, XSS and CSRF' },
+        { icon: '📴', cls: 'p-off', icls: 'pi-blue', title: 'Works offline', desc: 'The site keeps working when the network drops. Parents see grades, the shop accepts orders, the school registers enrolments — all offline. Data syncs when the internet returns.', proof: '✓ Offline-first technology with automatic sync' },
+        { icon: '⚡', cls: 'p-spd', icls: 'pi-gold', title: 'Fast on any network', desc: 'Optimised for 2G and 3G networks and low-memory devices. The site loads in seconds — even with weak signal, even on a basic phone. Your clients don\'t wait.', proof: '✓ Optimised for mobile and slow networks' },
+      ],
+      audienceTitle: 'Real problems. Solutions that work.',
+      audienceSub: 'We know the daily challenges of schools and small businesses in Guinea-Bissau.',
+      audience: [
+        { icon: '🏫', title: 'Schools', problem: '❌ "The school lost enrolment records because the computer broke and there was no backup."', solution: 'With Konexon, enrolments, grades and student data are stored safely. Parents can see grades even without network. <strong>Nothing is lost.</strong>' },
+        { icon: '🏪', title: 'Small businesses', problem: '❌ "The client wants a website but is afraid of being hacked."', solution: 'Konexon installs real security from day one. Your clients browse confidently and your business data stays <strong>always protected.</strong>' },
+        { icon: '📡', title: 'Areas without fixed internet', problem: '❌ "The business is in an area without fixed internet, only unstable mobile data."', solution: 'Konexon was built for this. The system works offline and syncs everything when the network returns. <strong>Instability won\'t stop you.</strong>' },
+      ],
+    },
+    sobre: {
+      meta: { title: 'About — Konexon', description: 'Meet the team and mission behind Konexon — technology built in Guinea-Bissau for the world.' },
+      label: 'Who we are', h2: 'We are not just<br>a company.',
+      p1: 'Konexon was born in Guinea-Bissau with one clear mission — to prove that Guinean talent does not need to leave to build world-class products.',
+      p2: 'We build websites for small and large businesses, AI-powered systems, IT consultancy and much more.',
+      pillars: [
+        { icon: '⚡', title: 'Technology with purpose', desc: 'Websites, systems and IT for any company — simple or complex, we build it.' },
+        { icon: '🌍', title: 'Guinea-Bissau for the world', desc: 'Born here, think global. Every product raises the country\'s name on the African digital map.' },
+        { icon: '🔗', title: 'Connections that transform', desc: 'We connect people, businesses and technology — digital, fast and borderless.' },
+        { icon: '💻', title: 'IT for every business', desc: 'Consultancy, development and technical support — from the simplest to the most complex project.' },
+      ],
+      foundersTitle: 'The people behind Konexon.',
+      foundersSub: 'Two Guinean engineering students who co-founded Konexon together — with a mission to build the country\'s technological future.',
+      founders: [
+        { initials: 'MN', cls: 'amm', name: 'Marcelino Nauagna Mendes', role: 'Tech & Vision', label: 'Co-Founder', bio: 'Computer Engineering student from Guinea-Bissau. Co-founded Konexon with the mission of proving that Guinean talent does not need to leave to succeed.', skillsLabel: 'Areas of interest', skills: ['AI', 'Cybersecurity', 'Engineering', 'Web Dev', 'Mindset'] },
+        { initials: 'JE', cls: 'aje', name: 'Josefina Elawar da Costa', role: 'Operations & Tech', label: 'Co-Founder', bio: 'Engineering student from Guinea-Bissau. Co-founded Konexon to connect people, businesses and technology — inside and outside the country.', skillsLabel: 'Areas of interest', skills: ['Engineering', 'Networks', 'AI', 'IT', 'Operations', 'Strategy'] },
+      ],
+    },
+    produtos: {
+      meta: { title: 'Products — Konexon', description: 'Konexon Serviço, Konexon Web and Konexon Mind — the Guinean technology ecosystem.' },
+      label: 'Our products', h2: 'One ecosystem. Many solutions.',
+      sub: 'Each product is autonomous, focused and built to dominate its space.',
+      products: [
+        { icon: '🛠️', cls: 'pcard-pay', status: 'ps-act', statusLabel: 'Active', name: 'KoneXon <em>Serviço</em>', desc: 'We build professional websites, management systems and web applications for schools and small businesses — secure, offline-first and optimised for slow networks.', tags: ['Web Dev', 'Offline-first', 'Security', 'IT'], cta: 'Request proposal →', href: '/contacto' },
+        { icon: '💻', cls: 'pcard-web', status: 'ps-act', statusLabel: 'Active', name: 'KoneXon <em>Web</em>', desc: 'We build professional websites, e-commerce, management systems and IT solutions for small businesses, startups and organisations.', tags: ['Web Dev', 'Design', 'AI', 'IT'], cta: 'Learn more →', href: '/contacto' },
+        { icon: '📡', cls: 'pcard-mind', status: 'ps-tba', statusLabel: 'Coming soon', name: 'KoneXon <em>Mind</em>', desc: 'A tech information platform — news, analysis and trends on digital innovation in Guinea-Bissau and the world.', tags: ['Technology', 'Africa', 'Innovation'], cta: 'Stay tuned →', href: '/contacto' },
+      ],
+    },
+    contacto: {
+      meta: { title: 'Contact — Konexon', description: 'Talk to Konexon. Request a free proposal for your website or application.' },
+      label: 'Contact', h2: 'Talk to Konexon.',
+      sub: 'Partnerships, projects or just want to know more — we\'re here.',
+      form: { namePlaceholder: 'Your name', emailPlaceholder: 'Your email', tipoLabel: 'Project type', tipos: ['Website', 'Web Application', 'School System', 'E-commerce', 'IT Consultancy', 'Other'], msgPlaceholder: 'Describe your project...', btn: '✉️ Send message' },
+      info: [
+        { icon: '✉️', type: 'Email', val: 'konexon.gw@gmail.com', href: 'mailto:konexon.gw@gmail.com' },
+        { icon: '🌍', type: 'Location', val: 'Bissau · Portugal', href: null },
+      ],
+      ctaText: 'Ready for a site that <em>never stops</em>?',
+      note: 'We reply within 24 hours. You can write in Portuguese, Creole, English or French.',
+      success: '✅ Message sent! We\'ll reply within 24 hours.',
+      error: '❌ Something went wrong. Please try again or email us directly.',
+    },
+  },
+};
+
+// ── SHARED DATA (language-independent) ──
+const shared = {
+  nodes: [
+    { i: '💻', n: 'Websites',    ne: 'Websites',    d: 'Sites modernos para pequenas e grandes empresas.',       de: 'Modern websites for small and large businesses.',       t: 'KoneXon Web',     r: 1 },
+    { i: '⚙️', n: 'Sistemas IT', ne: 'IT Systems',   d: 'Infraestrutura e consultoria técnica.',                  de: 'Infrastructure and technical consultancy.',             t: 'IT & Systems',    r: 1 },
+    { i: '🎨', n: 'Design',      ne: 'Design',       d: 'Interfaces bonitas e funcionais.',                       de: 'Beautiful and functional interfaces.',                  t: 'KoneXon Web',     r: 1 },
+    { i: '📱', n: 'Apps',        ne: 'Apps',         d: 'Aplicações nativas para iOS e Android.',                 de: 'Native applications for iOS and Android.',              t: 'KoneXon Serviço', r: 1 },
+    { i: '🤖', n: 'AI',          ne: 'AI',           d: 'Sistemas inteligentes para automatizar negócios.',       de: 'Intelligent systems to automate businesses.',           t: 'AI',              r: 2 },
+    { i: '🔒', n: 'Segurança',   ne: 'Security',     d: 'Proteção de dados e sistemas seguros.',                  de: 'Data protection and secure systems.',                   t: 'IT & Security',   r: 2 },
+    { i: '🌐', n: 'Redes',       ne: 'Networks',     d: 'Infraestrutura de redes e conectividade.',               de: 'Network infrastructure and connectivity.',              t: 'KoneXon Web',     r: 2 },
+    { i: '📊', n: 'Analytics',   ne: 'Analytics',    d: 'Dashboards e relatórios baseados em dados.',             de: 'Data-driven dashboards and reports.',                   t: 'IT & AI',         r: 2 },
+    { i: '☁️', n: 'Cloud',       ne: 'Cloud',        d: 'Servidores e alojamento web profissional.',              de: 'Professional servers and web hosting.',                 t: 'IT',              r: 2 },
+    { i: '🛒', n: 'E-commerce',  ne: 'E-commerce',   d: 'Lojas online completas com pagamento integrado.',        de: 'Complete online stores with integrated payments.',      t: 'Web & Serviço',   r: 3 },
+    { i: '📡', n: 'Mind',        ne: 'Mind',         d: 'Plataforma de informação e tendências tecnológicas.',    de: 'Tech news and trends platform.',                        t: 'Em breve',        r: 3 },
+    { i: '🤝', n: 'Parcerias',   ne: 'Partnerships', d: 'Conectamos empresas guineenses a parceiros globais.',    de: 'We connect Guinean businesses to global partners.',     t: 'Ecosystem',       r: 3 },
+    { i: '📈', n: 'Crescimento', ne: 'Growth',       d: 'Estratégias para escalar negócios guineenses.',          de: 'Strategies to scale Guinean businesses.',               t: 'Ecosystem',       r: 3 },
+    { i: '🛡️', n: 'Suporte',     ne: 'Support',      d: 'Assistência técnica contínua para o teu negócio.',       de: 'Ongoing technical assistance for your business.',       t: 'KoneXon Serviço', r: 3 },
+  ],
+  ticker: {
+    r1: [
+      { i: '💻', c: 'sig', n: 'Websites Profissionais', d: 'Para empresas pequenas e grandes' },
+      { i: '⚙️', c: 'sim', n: 'Sistemas IT',            d: 'Infraestrutura e consultoria' },
+      { i: '🛒', c: 'sib', n: 'E-commerce',             d: 'Lojas online completas' },
+      { i: '🎨', c: 'sig', n: 'Design UI/UX',           d: 'Interfaces que encantam' },
+      { i: '🤖', c: 'sim', n: 'Inteligência Artificial', d: 'Automação e inovação' },
+      { i: '📊', c: 'sib', n: 'Analytics & BI',         d: 'Decisões baseadas em dados' },
+      { i: '🔒', c: 'sig', n: 'Cibersegurança',         d: 'Proteção total de dados' },
+      { i: '📱', c: 'sim', n: 'Apps Móveis',            d: 'iOS e Android nativos' },
+    ],
+    r2: [
+      { i: '🌐', c: 'sib', n: 'Redes & Conectividade',  d: 'Infraestrutura de redes' },
+      { i: '🖥️', c: 'sig', n: 'Hardware & Redes',       d: 'Infraestrutura IT completa' },
+      { i: '💡', c: 'sim', n: 'Inovação Tech',          d: 'Soluções tecnológicas avançadas' },
+      { i: '📡', c: 'sib', n: 'KoneXon Mind',           d: 'Tecnologia & inovação' },
+      { i: '📈', c: 'sig', n: 'Crescimento Digital',    d: 'Escala o teu negócio' },
+      { i: '🤝', c: 'sim', n: 'Parcerias IT',           d: 'Projectos tecnológicos' },
+      { i: '☁️', c: 'sib', n: 'Cloud & Hosting',        d: 'Servidores e alojamento web' },
+      { i: '🧠', c: 'sig', n: 'Consultoria IT',         d: 'Estratégia e tecnologia' },
+    ],
+    r3: [
+      { i: '🚀', c: 'sig', n: 'Startups',              d: 'Aceleramos ideias guineenses' },
+      { i: '🔗', c: 'sim', n: 'Integrações',            d: 'Sistemas conectados entre si' },
+      { i: '📋', c: 'sib', n: 'Gestão de Projectos',   d: 'Do início ao fim, entregamos' },
+      { i: '🛡️', c: 'sig', n: 'Suporte Técnico',        d: 'Sempre disponíveis para ajudar' },
+      { i: '⚡', c: 'sim', n: 'Performance',            d: 'Sites rápidos e optimizados' },
+      { i: '🌐', c: 'sib', n: 'Presença Digital',       d: 'A tua marca online' },
+      { i: '📲', c: 'sig', n: 'Sistemas Mobile',        d: 'Soluções para telemóvel' },
+      { i: '🎯', c: 'sim', n: 'SEO & Marketing',        d: 'Mais visibilidade online' },
+    ],
+  },
+};
+
+module.exports = { t, shared };

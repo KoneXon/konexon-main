@@ -1,0 +1,55 @@
+<%- include('partials/head', { meta, lang }) %>
+<%- include('partials/nav', { page, lang }) %>
+
+<section class="page-hero">
+  <div class="hero-grid"></div>
+  <div class="page-hero-inner">
+    <p class="slabel"><%= c.label %></p>
+    <h1><%- c.h2 %></h1>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="about-left">
+    <p class="slabel"><%= c.label %></p>
+    <h2><%- c.h2 %></h2>
+    <p><%= c.p1 %></p>
+    <p><%= c.p2 %></p>
+  </div>
+  <div class="pillars">
+    <% c.pillars.forEach(p => { %>
+    <div class="pillar">
+      <div class="pi"><%= p.icon %></div>
+      <div>
+        <div class="pt"><%= p.title %></div>
+        <div class="pd"><%= p.desc %></div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<section class="founders" id="fundadores">
+  <div class="sec-hdr">
+    <p class="slabel"><%= lang === 'en' ? 'Founders' : 'Fundadores' %></p>
+    <h2><%= c.foundersTitle %></h2>
+    <p><%= c.foundersSub %></p>
+  </div>
+  <div class="fgrid">
+    <% c.founders.forEach(f => { %>
+    <div class="fcard">
+      <div class="founder-label"><%= f.label %></div>
+      <div class="favatar <%= f.cls %>"><%= f.initials %></div>
+      <div class="fname"><%= f.name %></div>
+      <div class="frole"><%= f.role %></div>
+      <p class="fbio"><%= f.bio %></p>
+      <div class="fskills-label"><%= f.skillsLabel %></div>
+      <div class="ftags">
+        <% f.skills.forEach(s => { %><span class="ftag"><%= s %></span><% }) %>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('partials/footer', { lang }) %>

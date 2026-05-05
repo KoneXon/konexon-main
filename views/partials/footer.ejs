@@ -1,0 +1,18 @@
+<% const fl = lang === 'en'
+  ? { tag:'The Connection Ecosystem · Guinea-Bissau to the world.', copy:'© 2026 KoneXon · All rights reserved', servicos:'Services', sobre:'About', produtos:'Products', contacto:'Contact' }
+  : { tag:'O Ecossistema de Conexões · Guiné-Bissau para o mundo.', copy:'© 2026 KoneXon · Todos os direitos reservados', servicos:'Serviços', sobre:'Sobre', produtos:'Produtos', contacto:'Contacto' };
+%>
+<footer class="footer">
+  <div>
+    <div class="fl">Kone<em>X</em>on</div>
+    <p class="ft"><%= fl.tag %></p>
+  </div>
+  <div class="footer-links">
+    <a href="/servicos"><%= fl.servicos %></a>
+    <a href="/sobre"><%= fl.sobre %></a>
+    <a href="/produtos"><%= fl.produtos %></a>
+    <a href="/contacto" class="active"><%= fl.contacto %></a>
+  </div>
+  <p class="ft"><%= fl.copy %></p>
+</footer>
+<script src="/js/main.js"></script>

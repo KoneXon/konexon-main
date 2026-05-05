@@ -1,0 +1,59 @@
+<%- include('partials/head', { meta, lang }) %>
+<%- include('partials/nav', { page, lang }) %>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="eco" id="eco">
+    <div class="eco-ring er1"></div>
+    <div class="eco-ring er2"></div>
+    <div class="eco-ring er3"></div>
+    <div class="eco-center"><div class="eco-k">KX</div></div>
+    <div class="tt" id="tt">
+      <div class="tt-n" id="tt-n"></div>
+      <div class="tt-d" id="tt-d"></div>
+      <div class="tt-t" id="tt-t"></div>
+    </div>
+  </div>
+  <div class="hero-text">
+    <div class="htag"><div class="hdot"></div><%- c.tag %></div>
+    <h1><%- c.h1 %></h1>
+    <p><%= c.p %></p>
+    <div class="hbtns">
+      <a href="/servicos" class="btn-p"><%= c.btn1 %></a>
+      <a href="/contacto" class="btn-s"><%= c.btn2 %></a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-sec">
+  <div class="ticker-hdr">
+    <p class="slabel"><%= c.ticker.label %></p>
+    <h2 class="stitle"><%= c.ticker.title %></h2>
+    <p class="ssub"><%= c.ticker.sub %></p>
+  </div>
+  <div class="tw"><div class="tr ta" id="r1"></div></div>
+  <div class="tw"><div class="tr tb" id="r2"></div></div>
+  <div class="tw"><div class="tr tc" id="r3"></div></div>
+</div>
+
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2><%- lang === 'en' ? 'Ready to <em>get started?</em>' : 'Pronto para <em>começar?</em>' %></h2>
+    <p><%= lang === 'en' ? 'Request a free proposal. We reply within 24 hours.' : 'Pede uma proposta gratuita. Respondemos em menos de 24 horas.' %></p>
+    <div class="hbtns" style="justify-content:center;">
+      <a href="/contacto" class="btn-p"><%= lang === 'en' ? '✉️ Request proposal' : '✉️ Pedir proposta' %></a>
+      <a href="/servicos" class="btn-s"><%= lang === 'en' ? 'See services →' : 'Ver serviços →' %></a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer', { lang }) %>
+
+<script>
+  const NODES = <%- JSON.stringify(nodes) %>;
+  const TICKER = <%- JSON.stringify(ticker) %>;
+  const LANG = '<%= lang %>';
+</script>
+<script src="/js/orbit.js"></script>
+<script src="/js/ticker.js"></script>
