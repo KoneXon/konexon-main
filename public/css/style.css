@@ -213,6 +213,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
 .form-group select option{background:#0a0a12;color:var(--text);}
 .form-group textarea{resize:vertical;min-height:120px;}
 .form-submit{align-self:flex-start;}
+.input-err{border-color:rgba(255,80,80,.5)!important;}
+.input-err:focus{border-color:rgba(255,80,80,.7)!important;}
+.field-err{font-size:.65rem;color:rgba(255,130,130,.85);margin-top:.2rem;}
 .flash{padding:1rem 1.2rem;border-radius:12px;font-size:.8rem;margin-bottom:1.5rem;}
 .flash-ok{background:rgba(0,232,122,.08);border:1px solid rgba(0,232,122,.25);color:var(--green);}
 .flash-err{background:rgba(255,80,80,.06);border:1px solid rgba(255,80,80,.2);color:rgba(255,150,150,.9);}

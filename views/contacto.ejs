@@ -15,33 +15,61 @@
 
     <% if (flash === 'success') { %>
     <div class="flash flash-ok"><%= c.success %></div>
-    <% } else if (flash === 'error') { %>
-    <div class="flash flash-err"><%= c.error %></div>
     <% } %>
 
     <form class="contact-form" action="/contacto" method="POST" novalidate>
+
       <div class="form-row">
         <div class="form-group">
           <label for="nome"><%= lang === 'en' ? 'Name' : 'Nome' %> <span class="req">*</span></label>
-          <input type="text" id="nome" name="nome" placeholder="<%= c.form.namePlaceholder %>" maxlength="100" required />
+          <input
+            type="text" id="nome" name="nome"
+            placeholder="<%= c.form.namePlaceholder %>"
+            maxlength="100" required
+            value="<%= values.nome || '' %>"
+            class="<%= fieldErrors.includes('nome') ? 'input-err' : '' %>"
+          />
+          <% if (fieldErrors.includes('nome')) { %>
+          <span class="field-err"><%= lang === 'en' ? 'Enter at least 2 characters.' : 'Escreve pelo menos 2 caracteres.' %></span>
+          <% } %>
         </div>
         <div class="form-group">
           <label for="email">Email <span class="req">*</span></label>
-          <input type="email" id="email" name="email" placeholder="<%= c.form.emailPlaceholder %>" maxlength="150" required />
+          <input
+            type="email" id="email" name="email"
+            placeholder="<%= c.form.emailPlaceholder %>"
+            maxlength="150" required
+            value="<%= values.email || '' %>"
+            class="<%= fieldErrors.includes('email') ? 'input-err' : '' %>"
+          />
+          <% if (fieldErrors.includes('email')) { %>
+          <span class="field-err"><%= lang === 'en' ? 'Enter a valid email.' : 'Introduce um email válido.' %></span>
+          <% } %>
         </div>
       </div>
+
       <div class="form-group">
         <label for="tipo"><%= c.form.tipoLabel %></label>
         <select id="tipo" name="tipo">
-          <% c.form.tipos.forEach(tipo => { %>
-          <option value="<%= tipo %>"><%= tipo %></option>
+          <% c.form.tipos.forEach(opt => { %>
+          <option value="<%= opt %>" <%= values.tipo === opt ? 'selected' : '' %>><%= opt %></option>
           <% }) %>
         </select>
       </div>
+
       <div class="form-group">
         <label for="mensagem"><%= lang === 'en' ? 'Message' : 'Mensagem' %> <span class="req">*</span></label>
-        <textarea id="mensagem" name="mensagem" rows="5" placeholder="<%= c.form.msgPlaceholder %>" maxlength="1000" required></textarea>
+        <textarea
+          id="mensagem" name="mensagem" rows="5"
+          placeholder="<%= c.form.msgPlaceholder %>"
+          maxlength="1000" required
+          class="<%= fieldErrors.includes('mensagem') ? 'input-err' : '' %>"
+        ><%= values.mensagem || '' %></textarea>
+        <% if (fieldErrors.includes('mensagem')) { %>
+        <span class="field-err"><%= lang === 'en' ? 'Message too short (min. 5 characters).' : 'Mensagem muito curta (mín. 5 caracteres).' %></span>
+        <% } %>
       </div>
+
       <button type="submit" class="btn-p form-submit"><%= c.form.btn %></button>
     </form>
 
